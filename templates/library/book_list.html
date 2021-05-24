@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+  /* stefan, this is my tag style */
+  .tags a {
+    color: #FFFFFF;
+    background-color: #43A047;
+    text-transform: uppercase;
+    font-size: .66rem;
+    white-space: nowrap;
+    border-radius: 2rem;
+    padding: .25rem .85rem .25rem;
+    line-height: 2;
+    margin: 0.1rem 0.1rem .1rem;
+  }
+
+  .tags {
+    width: 25vw;
+    padding: .5rem 0 1rem;
+    line-height: 2;
+    display: flex;
+    flex-flow: row wrap;
+
+  }
+</style>
+
+<h1 class="center">Book List</h1>
+
+<div class="row">
+  <div class="col s1 m0">
+  </div>
+  <div class="col s10 m12">
+    <table id="books" class="highlight centered">
+      <tr>
+        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+        <th class="title" onclick="sortTable(0)">Title</th>
+        <th class="author" onclick="sortTable(1)">Author</th>
+        <th class="rating" onclick="sortTable(2)">Rating</th>
+        <th class="tags" onclick="sortTable(3)">Tags</th>
+        <th class="added" onclick="sortTable(4)">Added</th>
+        <th class="published" onclick="sortTable(5)">Published</th>
+      </tr>
+      {% for book in book_list %}
+      <tr>
+        <td><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></td>
+        <td>{{book.author_sort}}</td>
+        <td> {% for rating in book.ratings.all %}
+          {{rating}}
+          {% endfor %}
+        </td>
+        <td class="tags">
+          <!-- stefan  -->
+          {% for tag in book.tags.all %}
+          <a href="" rel="tag">{{tag}}</a>
+          {% endfor %}
+        </td>
+        <td>{{book.timestamp | date:"d/m/Y" }}</td>
+        <td>{{book.pubdate.year}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <div class="col s1 m0">
+    </div>
+  </div>
+
+  {% endblock %}

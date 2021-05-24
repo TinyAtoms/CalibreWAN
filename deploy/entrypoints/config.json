@@ -1,0 +1,56 @@
+{
+  "listeners": {
+    "*:80": {
+      "pass": "routes"
+    }
+  },
+  "routes": [
+    {
+      "match": {
+        "uri": [
+          "/UserLibrary/*",
+          "!~\\.db"
+        ]
+      },
+      "action": {
+        "share": "/CWA/"
+      }
+    },
+    {
+      "match": {
+        "uri": "/static/*"
+      },
+      "action": {
+        "share": "/CWA/"
+      }
+    },
+    {
+      "match": {
+        "uri": [
+          "!~\\.db",
+          "!~\\.sqlite3",
+          "*"
+        ]
+      },
+      "action": {
+        "pass": "applications/django"
+      }
+    }
+  ],
+  "applications": {
+    "django": {
+      "type": "python 3",
+      "path": "/CWA/",
+      "module": "CalibreWAN.wsgi",
+      "environment": {
+        "DJANGO_SETTINGS_MODULE": "CalibreWAN.settings",
+        "DB_ENGINE": "django.db.backends.sqlite3"
+      },
+      "processes": {
+        "max": 25,
+        "spare": 1,
+        "idle_timeout": 20
+      }
+    }
+  }
+}
