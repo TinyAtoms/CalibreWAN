@@ -2,59 +2,83 @@
 <html lang="en">
 
 <head>
-  {% block title %}<title>Local Library</title>{% endblock %}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-  <style>
-    p.count {
-      color: #FFFFFF;
-      background-color: #515151;
-      border: 1px #303030;
-      border-radius: 0.5rem;
-      padding: .2rem .25rem;
-      margin: 0.1rem 0.1rem .1rem;
+    {% block title %}<title>Local Library</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 
-    }
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+    <style>
+        p.count {
+            color: #FFFFFF;
+            background-color: #515151;
+            border: 1px #303030;
+            border-radius: 0.5rem;
+            padding: .2rem .25rem;
+            margin: 0.1rem 0.1rem .1rem;
 
-    table {
-      width: 100%;
-      table-layout: fixed;
-    }
+        }
 
-    th {
-      text-align: center;
-    }
+        table {
+            width: 100%;
+            table-layout: fixed;
+        }
 
-    .title {
-      width: 30%;
-    }
+        th {
+            text-align: center;
+        }
 
-    .author {
-      width: 20%;
-    }
+        .title {
+            width: 30%;
+        }
 
-    .rating {
-      width: 5%;
-    }
+        .author {
+            width: 20%;
+        }
 
-    .tags {
-      width: 25%;
-    }
+        .rating {
+            width: 5%;
+        }
 
-    .added {
-      width: 10%;
-    }
+        .tags {
+            width: 25%;
+        }
 
-    .published {
-      width: 10%;
-    }
-  </style>
+        .added {
+            width: 10%;
+        }
+
+        .published {
+            width: 10%;
+        }
+
+        /* stefan, this is my tag style */
+        .tags a {
+            color: #FFFFFF;
+            background-color: #43A047;
+            text-transform: uppercase;
+            font-size: .66rem;
+            white-space: nowrap;
+            border-radius: 2rem;
+            padding: .25rem .85rem .25rem;
+            line-height: 2;
+            margin: 0.1rem 0.1rem .1rem;
+        }
+
+        .tags {
+            width: 25vw;
+            padding: .5rem 0 1rem;
+            line-height: 2;
+            display: flex;
+            flex-flow: row wrap;
+
+        }
+
+    </style>
 </head>
 
 <body>
@@ -64,65 +88,65 @@
 
 
 
-  {% block content %} {% endblock %}
+{% block content %} {% endblock %}
 
 
-  <script>
+<script>
     function sortTable(n) {
-      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-      table = document.getElementById("books");
-      switching = true;
-      // Set the sorting direction to ascending:
-      dir = "asc";
-      /* Make a loop that will continue until
-      no switching has been done: */
-      while (switching) {
-        // Start by saying: no switching is done:
-        switching = false;
-        rows = table.rows;
-        /* Loop through all table rows (except the
-        first, which contains table headers): */
-        for (i = 1; i < (rows.length - 1); i++) {
-          // Start by saying there should be no switching:
-          shouldSwitch = false;
-          /* Get the two elements you want to compare,
-          one from current row and one from the next: */
-          x = rows[i].getElementsByTagName("TD")[n];
-          y = rows[i + 1].getElementsByTagName("TD")[n];
-          /* Check if the two rows should switch place,
-          based on the direction, asc or desc: */
-          if (dir == "asc") {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("books");
+        switching = true;
+        // Set the sorting direction to ascending:
+        dir = "asc";
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+            // Start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /* Loop through all table rows (except the
+            first, which contains table headers): */
+            for (i = 1; i < (rows.length - 1); i++) {
+                // Start by saying there should be no switching:
+                shouldSwitch = false;
+                /* Get the two elements you want to compare,
+                one from current row and one from the next: */
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /* Check if the two rows should switch place,
+                based on the direction, asc or desc: */
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        // If so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        // If so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
             }
-          } else if (dir == "desc") {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
+            if (shouldSwitch) {
+                /* If a switch has been marked, make the switch
+                and mark that a switch has been done: */
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                // Each time a switch is done, increase this count by 1:
+                switchcount++;
+            } else {
+                /* If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again. */
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
             }
-          }
         }
-        if (shouldSwitch) {
-          /* If a switch has been marked, make the switch
-          and mark that a switch has been done: */
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-          // Each time a switch is done, increase this count by 1:
-          switchcount++;
-        } else {
-          /* If no switching has been done AND the direction is "asc",
-          set the direction to "desc" and run the while loop again. */
-          if (switchcount == 0 && dir == "asc") {
-            dir = "desc";
-            switching = true;
-          }
-        }
-      }
     }
-  </script>
+</script>
 
 </body>
 
