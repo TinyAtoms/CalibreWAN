@@ -46,6 +46,17 @@ class BookDetailView(generic.DetailView):
         return context
 
 
+class TitleComplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        # Don't forget to filter out results depending on the visitor !
+        if not self.request.user.is_authenticated:
+            return Book.objects.none()
+        qs = Book.objects.all()
+        if self.q:
+            qs = qs.filter(title__icontains=self.q)
+        return qs
+
+
 class AuthorComplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
@@ -57,12 +68,21 @@ class AuthorComplete(autocomplete.Select2QuerySetView):
         return qs
 
 
+
 class TagComplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
 
     def get_queryset(self):
         qs = Tag.objects.all()
+
+        author = self.forwarded.get('authors', None)
+        books = Book.objects.all()
+
+        if author:
+            author_objs = Author.objects.filter(id__in=author)
+            books = books.filter(authors__in=author_objs)
+            qs = qs.filter(book__in=books).distinct()
         if self.q:
             qs = qs.filter(name__icontains=self.q)
         return qs
@@ -85,6 +105,17 @@ class SeriesComplete(autocomplete.Select2QuerySetView):
         if not self.request.user.is_authenticated:
             return Series.objects.none()
         qs = Series.objects.all()
+        books = Book.objects.all().prefetch_related("tags", "ratings", "series", "authors")
+        author = self.forwarded.get('authors', None)
+        tag = self.forwarded.get('tags', None)
+        if author:
+            author_objs = Author.objects.filter(id__in=author)
+            books = books.filter(authors__in=author_objs).distinct()
+            qs = qs.filter(book__in=books).distinct()
+        if tag:
+            tag_obs = Tag.objects.filter(id__in=tag)
+            books = books.filter(tags__in=tag_obs).distinct()
+            qs = qs.filter(book__in=books).distinct()
         if self.q:
             qs = qs.filter(name__icontains=self.q)
         return qs
@@ -96,7 +127,6 @@ class SearchView(generic.View):
             "authors_andor": 0,
             "tags_andor": 0,
             "series_andor": 0,
-
         })
         context = {'form': form}
         return render(request, 'library/results.html', context)
@@ -104,12 +134,10 @@ class SearchView(generic.View):
     def post(self, request, *args, **kwargs):
         form = BookFilterForm(data=request.POST)
         context = {'form': form}
-        print(form.data)
         if not form.is_valid():
             return render(request, 'library/results.html', context)
 
         POST = self.request.POST
-        title = POST.get('title')
         authors = POST.getlist('authors')
         tags = POST.getlist("tags")
         series = POST.getlist("series")
@@ -118,8 +146,6 @@ class SearchView(generic.View):
         series_andor = int(POST.get("series_andor"))
         tags_andor = int(POST.get("tags_andor"))
         books = Book.objects.prefetch_related("tags", "ratings", "series", "authors")
-        if title:
-            books = books.filter(sort__icontains=title)
         if authors:
             if authors_andor:
                 for i in authors:
@@ -129,11 +155,21 @@ class SearchView(generic.View):
                 author_objs = Author.objects.filter(id__in=authors)
                 books = books.filter(authors__in=author_objs)
         if tags:
-            tag_objs = Tag.objects.filter(id__in=tags)
-            books = books.filter(tags__in=tag_objs)
+            if tags_andor:
+                for i in tags:
+                    books = books.filter(tags__id=int(i))
+            else:
+                tag_objs = Tag.objects.filter(id__in=tags)
+                books = books.filter(tags__in=tag_objs)
         if series:
-            books = books.filter(series__in=series)
+            if series_andor:
+                for i in series:
+                    books = books.filter(series__id=int(i))
+            else:
+                books = books.filter(series__in=series)
         if langs:
             books = books.filter(languages=langs)
         context["book_list"] = books.distinct()
         return render(request, 'library/results.html', context)
+
+

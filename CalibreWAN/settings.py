@@ -32,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
@@ -48,7 +48,8 @@ ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 INSTALLED_APPS = [
     'dal',  # autocomplete
-    'dal_select2',
+    'dal_select2', # autocomplete
+    'crispy_forms', # DRY forms
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,22 +67,8 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 2
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-# # Provider specific settings
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#
-#         'APP': {
-#         }
-#     },
-#     'github': {
-#         'SCOPE': [
-#             'user',
-#             'repo',
-#             'read:org',
-#         ],
-#     }
-# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

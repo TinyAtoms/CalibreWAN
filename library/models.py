@@ -25,7 +25,7 @@ class Author(models.Model):
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
-        return self.name
+        return self.sort
 
     class Meta:
         managed = False
