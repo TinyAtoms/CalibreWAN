@@ -24,7 +24,7 @@
                         Published by
                         {% if book.publishers %}
                             {% for pub in book.publishers.all %}
-                                <a href="">{{ pub.name }}</a>
+                                <a href="{{ pub.get_absolute_url }}">{{ pub.name }}</a>
                             {% endfor %}
                         {% else %}
                             Unknown

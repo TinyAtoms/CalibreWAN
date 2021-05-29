@@ -3,17 +3,17 @@
 {% block content %}
     {% load static %}
 
- {% if form %}
-{#        <div class="container">#}
-{#        <form action="{% url 'search' %}" method="post" style="padding-top:2em">#}
-{#            {% csrf_token %}#}
-{#            {{ form }}#}
-{#            <button class="waves-effect waves-light btn blue accent-4" type="submit">search</button>#}
-{#        </form>#}
-{##}
-{#    </div>#}
-     {% load crispy_forms_tags %}
-{% crispy form form.helper %}
+    {% if form %}
+        {#        <div class="container">#}
+        {#        <form action="{% url 'search' %}" method="post" style="padding-top:2em">#}
+        {#            {% csrf_token %}#}
+        {#            {{ form }}#}
+        {#            <button class="waves-effect waves-light btn blue accent-4" type="submit">search</button>#}
+        {#        </form>#}
+        {##}
+        {#    </div>#}
+        {% load crispy_forms_tags %}
+        {% crispy form form.helper %}
     {% endif %}
 
     <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
@@ -40,7 +40,7 @@
         })($)
     </script>
 
-    <h1 class="center">Results</h1>
+    <h1 class="center">Books</h1>
 
     <div class="row">
         <div class="col s1 m0">
@@ -59,15 +59,21 @@
                 {% for book in book_list %}
                     <tr>
                         <td><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></td>
-                        <td>{{ book.author_sort }}</td>
-                        <td> {% for rating in book.ratings.all %}
-                            {{ rating }}
-                        {% endfor %}
+                        <td>
+                            {% for author in book.authors.all %}
+                                <a href="{{ author.get_absolute_url }}" rel="author">{{ author }}</a>
+                            {% endfor %}
+
+                        </td>
+                        <td>
+                            {% for rating in book.ratings.all %}
+                                {{ rating }}
+                            {% endfor %}
                         </td>
                         <td class="tags">
                             <!-- stefan  -->
                             {% for tag in book.tags.all %}
-                                <a href="" rel="tag">{{ tag }}</a>
+                                <a href="{{ tag.get_absolute_url }}" rel="tag">{{ tag }}</a>
                             {% endfor %}
                         </td>
                         <td>{{ book.timestamp | date:"d/m/Y" }}</td>

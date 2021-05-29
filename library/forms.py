@@ -21,7 +21,8 @@ class BookFilterForm(forms.Form):
     authors_andor = forms.ChoiceField(
         label="author behaviour",
         choices=AND_OR,
-        required=True,
+        initial=0,
+        required=False,
         widget=forms.RadioSelect)
     tags = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.all(),
@@ -32,7 +33,8 @@ class BookFilterForm(forms.Form):
     )
     tags_andor = forms.ChoiceField(
         label="tags behaviour",
-        choices=AND_OR, required=True,
+        initial=0,
+        choices=AND_OR, required=False,
         widget=forms.RadioSelect)
 
     series = forms.ModelMultipleChoiceField(
@@ -44,7 +46,8 @@ class BookFilterForm(forms.Form):
     )
     series_andor = forms.ChoiceField(
         label="series behaviour",
-        choices=AND_OR, required=True,
+        initial=0,
+        choices=AND_OR, required=False,
         widget=forms.RadioSelect)
 
     langs = forms.ModelChoiceField(
