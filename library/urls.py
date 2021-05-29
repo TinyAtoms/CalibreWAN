@@ -15,13 +15,14 @@ urlpatterns = [
     path("series-autocomplete/", views.SeriesComplete.as_view(), name="series-autocomplete"),
     path("title-autocomplete/", views.TitleComplete.as_view(), name="title-autocomplete"),
 
-    path("filter/", views.SearchView.as_view(), name="filter"),
-    path('books/', views.SearchView.as_view(), name='books'),
-    path("tag/<int:tag>", views.SearchView.as_view(), name="tag-detail-view"),
-    path("author/<int:author>", views.SearchView.as_view(), name="author-detail-view"),
-    path("series/<int:series_id>", views.SearchView.as_view(), name="series-detail-view"),
-    path("publisher/<int:publisher>", views.SearchView.as_view(), name="publisher-detail-view"),
-    path("rating/<int:rating>", views.SearchView.as_view(), name="publisher-detail-view"),
+    path('results/', views.SearchResultsView.as_view(), name='results'),
+    path("filter/", views.FilterView.as_view(), name="filter"),
+    path('books/', views.FilterView.as_view(), name='books'),
+    path("tag/<int:tag>", views.FilterView.as_view(), name="tag-detail-view"),
+    path("author/<int:author>", views.FilterView.as_view(), name="author-detail-view"),
+    path("series/<int:series_id>", views.FilterView.as_view(), name="series-detail-view"),
+    path("publisher/<int:publisher>", views.FilterView.as_view(), name="publisher-detail-view"),
+    path("rating/<int:rating>", views.FilterView.as_view(), name="publisher-detail-view"),
 
 
     path('book/<int:pk>', views.BookDetailView.as_view(), name='book-detail-view'),

@@ -1,6 +1,6 @@
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import  Layout, Fieldset, Submit
-from crispy_forms.bootstrap import Div, InlineField, InlineRadios
+# from crispy_forms.helper import FormHelper
+# from crispy_forms.layout import  Layout, Fieldset, Submit
+# from crispy_forms.bootstrap import Div, InlineField, InlineRadios
 from dal import autocomplete
 from django import forms
 
@@ -56,36 +56,39 @@ class BookFilterForm(forms.Form):
         required=False
     )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.layout = Layout(
-            Div(
-                Div('authors', css_class='col-md-6', ),
-                InlineRadios('authors_andor', css_class='col-md-6', ),
-                css_class='row',
-            ),
-            Div(
-                Div('tags', css_class='col-md-6', ),
-                InlineRadios('tags_andor', css_class='col-md-6', ),
-                css_class='row',
-            ),
-            Div(
-                Div('series', css_class='col-md-6', ),
-                InlineRadios('series_andor', css_class='col-md-6', ),
-                css_class='row',
-            ),
-            Div("langs", css_class="col-md-6")
-        )
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.helper = FormHelper()
+    #     self.helper.layout = Layout(
+    #         Div(
+    #             Div('authors', css_class='col-md-6', ),
+    #             InlineRadios('authors_andor', css_class='col-md-6', ),
+    #             css_class='row',
+    #         ),
+    #         Div(
+    #             Div('tags', css_class='col-md-6', ),
+    #             InlineRadios('tags_andor', css_class='col-md-6', ),
+    #             css_class='row',
+    #         ),
+    #         Div(
+    #             Div('series', css_class='col-md-6', ),
+    #             InlineRadios('series_andor', css_class='col-md-6', ),
+    #             css_class='row',
+    #         ),
+    #         Div("langs", css_class="col-md-6")
+    #     )
+    #
+    #     self.helper.form_id = 'filter'
+    #     self.helper.form_class = 'blueForms'
+    #     self.helper.form_method = 'post'
+    #     self.helper.form_action = 'filter'
+    #
+    #     self.helper.add_input(Submit('submit', 'Submit'))
 
-        self.helper.form_id = 'filter'
-        self.helper.form_class = 'blueForms'
-        self.helper.form_method = 'post'
-        self.helper.form_action = 'filter'
 
-        self.helper.add_input(Submit('submit', 'Submit'))
-    # class Meta:
-    #     widgets = {
-    #         'tags': autocomplete.ModelSelect2Multiple(url='tags-autocomplete',
-    #                                                    forward=['authors'])
-    #     }
+
+class SearchForm(forms.Form):
+    # title = forms.CharField(label="Title", max_length=200, required=False)
+    # author = forms.CharField(label='Author', max_length=100, required=False)
+    # identifier = forms.CharField(label='Identifier(ISBN, Google-id, amazon id)', max_length=20, required=False)
+    generic = forms.CharField(label='All', max_length=100, required=False)

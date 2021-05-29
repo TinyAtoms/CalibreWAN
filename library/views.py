@@ -2,6 +2,7 @@ import logging
 
 from dal import autocomplete
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.shortcuts import render
 from django.views import generic
 
@@ -120,7 +121,7 @@ class SeriesComplete(autocomplete.Select2QuerySetView):
         return qs
 
 
-class SearchView(LoginRequiredMixin, generic.View):
+class FilterView(LoginRequiredMixin, generic.View):
     def get(self, request, *args, **kwargs):
         context = {'form': BookFilterForm(), "book_list": self.filter_books(kwargs)}
         return render(request, 'library/results.html', context)
@@ -191,4 +192,33 @@ class SearchView(LoginRequiredMixin, generic.View):
         if rating != None:
             books = books.filter(ratings__rating=rating)
         print(books.query)
+        return books
+
+
+
+
+class SearchResultsView(generic.ListView):  # no clue if this is secure.
+    # according to this https://stackoverflow.com/questions/13574043/how-do-django-forms-sanitize-text-input-to-prevent-sql-injection-xss-etc
+    # it is
+    model = Book
+    template_name = 'book_list.html'
+
+    def dispatch(self, *args, **kwargs):
+        return super(SearchResultsView, self).dispatch(*args, **kwargs)
+
+    def get_queryset(self):  # new
+        generic = self.request.GET.get("generic")
+        books = Book.objects.prefetch_related("tags", "ratings")
+        if generic:
+            author_obj = Author.objects.filter(name__icontains=generic).first()
+            if not author_obj:
+                author_id = -1
+            else:
+                author_id = author_obj.id
+            books = books.filter(
+                Q(sort__icontains=generic) |
+                Q(author_sort__icontains=generic) |
+                Q(authors__id=author_id) |
+                Q(identifier__val=generic)
+            ).distinct()
         return books

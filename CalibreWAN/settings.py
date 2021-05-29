@@ -49,7 +49,6 @@ ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 INSTALLED_APPS = [
     'dal',  # autocomplete
     'dal_select2', # autocomplete
-    'crispy_forms', # DRY forms
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,7 +66,6 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 2
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 
 MIDDLEWARE = [

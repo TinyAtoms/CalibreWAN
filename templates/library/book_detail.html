@@ -6,9 +6,25 @@
     <div class="col s12 m7">
         <div class="card z-depth-0 horizontal">
             <div class="card-image">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"
+                        integrity="sha512-uVSVjE7zYsGz4ag0HEzfugJ78oHCI1KhdkivjQro8ABL/PRiEO4ROwvrolYAcZnky0Fl/baWKYilQfWvESliRA=="
+                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 <a style="padding-top:15%" href=" /UserLibrary/{{ download }}"><img src=" /UserLibrary/{{ imgpath }}"
                                                                                     alt="download" srcset=""></a>
             </div>
+
+{#        ebook reader things #}
+            <a href="/static/ViewerJS/../../UserLibrary/{{ download }}"> READ </a>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/epub.js/0.2.13/epub.min.js"
+                    integrity="sha512-ktwncEGc1G2bleGfAdTgIxyHiE5/syR19HWAN3S0soSHF8+q7E73POq13slxkTwYrJF9rVFKaKh1zbZhKK9vdg=="
+                    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <div id="epub-area"></div>
+            <script>
+                var book = ePub("/UserLibrary/{{ download }}");
+                var rendition = book.renderTo("epub-area", {width: 600, height: 400});
+                var displayed = rendition.display();
+            </script>
+{#        end ebook reader things#}
             <div class="card-stacked">
                 <div class="card-content">
                     <h1> {{ book.title }}</h1>

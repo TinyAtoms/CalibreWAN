@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
     <h1 class="center">Book List</h1>
 
     <div class="row">
@@ -30,7 +29,7 @@
                         <td class="tags">
                             <!-- stefan  -->
                             {% for tag in book.tags.all %}
-                                <a href="" rel="tag">{{ tag }}</a>
+                                <a href={{ tag.get_absolute_url }} rel="tag">{{ tag }}</a>
                             {% endfor %}
                         </td>
                         <td>{{ book.timestamp | date:"d/m/Y" }}</td>
@@ -41,5 +40,5 @@
             <div class="col s1 m0">
             </div>
         </div>
-
+    </div>
 {% endblock %}
