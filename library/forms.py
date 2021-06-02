@@ -10,7 +10,8 @@ AND_OR = [
     (0, 'OR'),
     (1, "AND")
 ]
-
+RATING_CHOICE = [(i, i) for i in range(11)]
+YEAR_CHOICE = [i for i in range(2022, 1970, -1)]
 
 class BookFilterForm(forms.Form):
     authors = forms.ModelMultipleChoiceField(
@@ -55,35 +56,11 @@ class BookFilterForm(forms.Form):
         widget=autocomplete.ModelSelect2(url='lang-autocomplete'),
         required=False
     )
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.helper = FormHelper()
-    #     self.helper.layout = Layout(
-    #         Div(
-    #             Div('authors', css_class='col-md-6', ),
-    #             InlineRadios('authors_andor', css_class='col-md-6', ),
-    #             css_class='row',
-    #         ),
-    #         Div(
-    #             Div('tags', css_class='col-md-6', ),
-    #             InlineRadios('tags_andor', css_class='col-md-6', ),
-    #             css_class='row',
-    #         ),
-    #         Div(
-    #             Div('series', css_class='col-md-6', ),
-    #             InlineRadios('series_andor', css_class='col-md-6', ),
-    #             css_class='row',
-    #         ),
-    #         Div("langs", css_class="col-md-6")
-    #     )
-    #
-    #     self.helper.form_id = 'filter'
-    #     self.helper.form_class = 'blueForms'
-    #     self.helper.form_method = 'post'
-    #     self.helper.form_action = 'filter'
-    #
-    #     self.helper.add_input(Submit('submit', 'Submit'))
+    rating_lte = forms.ChoiceField(choices=RATING_CHOICE, initial=RATING_CHOICE[0])
+    pubyear_begin = forms.IntegerField(required=False)
+    pubyear_end = forms.IntegerField(required=False)
+    timestamp_begin = forms.DateTimeField(required=False, widget=forms.SelectDateWidget(years=YEAR_CHOICE))
+    timestamp_end = forms.DateTimeField(required=False, widget=forms.SelectDateWidget(years=YEAR_CHOICE))
 
 
 
