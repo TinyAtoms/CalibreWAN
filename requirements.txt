@@ -1,6 +1,8 @@
+django-environ>=0.4.5 # seperating secrets
 Django==3.2.3
-django-filter>=2.4
-
+django-allauth>=0.44 # oAuth
+django-autocomplete-light # autocomplete
+django-crispy-forms>=1.11 # better DRY forms
 # development
 # django-extensions>=3.1
 # gunicorn>=20.0

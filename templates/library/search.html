@@ -1,0 +1,12 @@
+
+
+{% block content %}
+    <div class="container">
+        <form action="{% url 'results' %}" method="get" style="padding-top:2em">
+            <label for="generic">Title: </label>
+            <input id="generic" type="text" name="generic" value="">
+            <button class="waves-effect waves-light btn green accent-4" type="submit">search</button>
+        </form>
+    </div>
+
+{% endblock %}

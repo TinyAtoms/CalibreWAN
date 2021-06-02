@@ -2,11 +2,13 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class DjangoRouter:
     """
     A router to control all database operations on models in the
     auth and contenttypes applications.
     """
+
     def db_for_read(self, model, **hints):
         """
         Attempts to read anything else goes to calibre
@@ -32,7 +34,6 @@ class DjangoRouter:
         return True
 
 
-
 class CalibreRouter:
     """
     A router to control all database operations on models in the
@@ -54,10 +55,10 @@ class CalibreRouter:
         involved.
         """
         if (
-            obj1._meta.app_label in self.route_app_labels or
-            obj2._meta.app_label in self.route_app_labels
+                obj1._meta.app_label in self.route_app_labels or
+                obj2._meta.app_label in self.route_app_labels
         ):
-           return True
+            return True
         return None
 
     # def allow_migrate(self, db, app_label, model_name=None, **hints):

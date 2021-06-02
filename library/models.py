@@ -5,12 +5,14 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+import logging
+
 from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
-import logging
 
 logger = logging.getLogger(__name__)
+
 
 class Author(models.Model):
     name = models.TextField()
@@ -23,7 +25,7 @@ class Author(models.Model):
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
-        return self.name
+        return self.sort
 
     class Meta:
         managed = False
@@ -218,6 +220,7 @@ class Book(models.Model):
     @property
     def serie(self):
         return self.series.first()
+
     tags = models.ManyToManyField(
         Tag,
         through='BookTagLink',
@@ -328,5 +331,3 @@ class BookTagLink(models.Model):
             models.Index(fields=["book"], name="books_tags_link_bidx"),
             models.Index(fields=["tag"], name="books_tags_link_aidx"),
         ]
-
-
