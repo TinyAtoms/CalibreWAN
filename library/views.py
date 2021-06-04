@@ -1,5 +1,4 @@
 import logging
-from datetime import date
 
 from dal import autocomplete
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -7,27 +6,31 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.views import generic
 
-from .forms import BookFilterForm
+from .forms import BookFilterForm, SearchForm
 from .models import Author, Book, Comment, Tag, Data, \
     Series, Language
 
 logger = logging.getLogger(__name__)
 
 
-# class BookListView(generic.ListView):
-#     model = Book
-#
-#     def dispatch(self, *args, **kwargs):
-#         return super(BookListView, self).dispatch(*args, **kwargs)
-#
-#     def get_queryset(self):
-#         # Annotate the books with ratings, tags, etc
-#         # books = Book.objects.annotate(
-#         queryset = Book.objects.prefetch_related("tags", "ratings")
-#         return queryset
+class OPDSAcquisitionFeedView(generic.ListView):
+    model = Book
+    paginate_by = 100
+    template_name = 'library/opds_aquisition.html'
+
+    def dispatch(self, *args, **kwargs):
+        return super(OPDSAcquisitionFeedView, self).dispatch(*args, **kwargs)
+
+    def get_queryset(self):
+        queryset = Book.objects.prefetch_related("tags", "ratings", "series", "authors", "data", "publishers",
+                                                 "languages", "identifier_set").order_by("id")
+        return queryset
 
 
 class BookDetailView(generic.DetailView):
+    """
+    A book detail view, intended to display info about a specific book
+    """
     model = Book
 
     def dispatch(self, *args, **kwargs):
@@ -40,7 +43,7 @@ class BookDetailView(generic.DetailView):
         try:
             context['comment'] = Comment.objects.get(
                 book=context["object"].id).text
-        except:
+        except Comment.DoesNotExist:
             pass
         context["imgpath"] = context["object"].path + "/cover.jpg"
         download = Data.objects.get(book=context["object"].id)
@@ -49,6 +52,10 @@ class BookDetailView(generic.DetailView):
 
 
 class TitleComplete(autocomplete.Select2QuerySetView):
+    """
+    Autocomplete api thing for titles.
+    """
+
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
         if not self.request.user.is_authenticated:
@@ -60,6 +67,10 @@ class TitleComplete(autocomplete.Select2QuerySetView):
 
 
 class AuthorComplete(autocomplete.Select2QuerySetView):
+    """
+    Autocomplete thing for authors, for the FilterView
+    """
+
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
         if not self.request.user.is_authenticated:
@@ -71,6 +82,9 @@ class AuthorComplete(autocomplete.Select2QuerySetView):
 
 
 class TagComplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
+    """
+    Autocomplete thing for tags, for the FilterView
+    """
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
 
@@ -90,6 +104,12 @@ class TagComplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
 
 
 class LanguageComplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
+    """
+    Autocomplete thing for languages, for the FilterView
+    """
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
+
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
         if not self.request.user.is_authenticated:
@@ -100,7 +120,13 @@ class LanguageComplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
         return qs
 
 
-class SeriesComplete(autocomplete.Select2QuerySetView):
+class SeriesComplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
+    """
+    Autocomplete for series
+    """
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
+
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
         if not self.request.user.is_authenticated:
@@ -123,125 +149,113 @@ class SeriesComplete(autocomplete.Select2QuerySetView):
 
 
 class FilterView(LoginRequiredMixin, generic.View):
+    """
+    Advanced book filtering. Can filter by
+    1. authors (and/or)
+    2. tags (and/or)
+    3. Series (and/or)
+    4. languages
+    5. ratings (greater or equal to )
+    6. pubdate ranges
+    7. added to calibre ranges
+    """
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
+
     def get(self, request, *args, **kwargs):
-        context = {'form': BookFilterForm(), "book_list": self.filter_books(kwargs)}
+        """
+        Hijacked this to substitute for various X_detail pages, filters book where
+        for example, book__authors__id=1
+        :param request:
+        :param args:
+        :param kwargs: things to filter for
+        :return: rendered template
+        """
+        context = {'form': BookFilterForm(), "book_list": self.filter_books_get(kwargs)}
         return render(request, 'library/results.html', context)
 
     def post(self, request, *args, **kwargs):
+        """
+        Used for the filtering process.
+        Gets clean data from the form and filters it.
+        :param request:
+        :param kwargs:
+        :return: rendered template
+        """
         form = BookFilterForm(data=request.POST)
         context = {'form': form}
         if not form.is_valid():
             return render(request, 'library/results.html', context)
-        POST = self.request.POST
-        filter_dict = dict(POST)
-        filter_dict.pop("csrfmiddlewaretoken")
-        multiple = ["authors", "series", "tags"]
-        for k,v in filter_dict.items():
-            if k in multiple and v[0] != "": # a multiple choice field filled
-                filter_dict[k] = [int(i) for i in v]
-            elif v[0] == "": # any field, empty
-                filter_dict[k] = None
-            else: # any other field, filled
-                filter_dict[k] = int(v[0])
-        if POST["timestamp_begin_month"]:
-            filter_dict["timestamp_begin"] = date(
-                int(POST["timestamp_begin_year"]),
-                int(POST["timestamp_begin_month"]),
-                int(POST["timestamp_begin_day"]))
-        if POST["timestamp_end_month"]:
-            filter_dict["timestamp_end"] = date(
-                int(POST["timestamp_end_year"]),
-                int(POST["timestamp_end_month"]),
-                int(POST["timestamp_end_day"]))
-        context["book_list"] = self.filter_books(filter_dict)
+        filter_dict = form.cleaned_data
+        context["book_list"] = self.filter_books_post(filter_dict)
         return render(request, 'library/results.html', context)
 
-    def filter_books(self, filter):
-        print(filter) # DEBUG
-        authors = filter.get("authors", [])
-        author = filter.get("author", 0)
-        authors_andor = filter.get("authors_andor")
-        tags = filter.get("tags", [])
-        tag = filter.get("tag", 0)
-        tags_andor = filter.get("tags_andor")
-        series = filter.get("series", [])
-        series_id = filter.get("series_id", 0)
-        series_andor = filter.get("series_andor")
-        langs = filter.get("langs")
-        publisher = filter.get("publisher", 0)
-        rating = filter.get("rating", None)
-        rating_lte = filter.get("rating_lte", 0)
-        pubyear_begin = filter.get("pubyear_begin", 0)
-        pubyear_end = filter.get("pubyear_end", 0)
-        timestamp_begin = filter.get("timestamp_begin", None)
-        timestamp_end = filter.get("timestamp_end", None)
-
+    def filter_books_get(self, filterset):
+        """
+        does the actual filtering for get requests
+        :param filterset: dictionary with filters
+        :return: queryset
+        """
         books = Book.objects.prefetch_related("tags", "ratings", "series", "authors")
-        if author:
-            books = books.filter(authors__id=author)
-        if authors and authors_andor:
-            for i in authors:
-                books = books.filter(authors__id=i)
-        elif authors:
-            author_objs = Author.objects.filter(id__in=authors)
-            books = books.filter(authors__in=author_objs)
-        if tag:
-            books = books.filter(tags__id=tag)
-        if tags and tags_andor:
-            for i in tags:
-                books = books.filter(tags__id=int(i))
-        elif tags:
-            tag_objs = Tag.objects.filter(id__in=tags)
-            books = books.filter(tags__in=tag_objs)
-        if series_id:
-            books = books.filter(series__id=series_id)
-        if series and series_andor:
-            for i in series:
-                books = books.filter(series__id=int(i))
-        elif series:
-            books = books.filter(series__in=series)
-        if langs:
-            books = books.filter(languages=langs).distinct()
-        if publisher:
-            books = books.filter(publishers=publisher)
-        if rating != None:
-            books = books.filter(ratings__rating=rating)
-        if rating_lte:
-            books = books.filter(ratings__rating__gte=rating_lte)
-        if pubyear_begin:
-            books = books.filter(pubdate__gte=date(pubyear_begin, 1, 1))
-        if pubyear_end:
-            books = books.filter(pubdate__lte=date(pubyear_end, 12, 31))
-        if timestamp_begin:
-            books = books.filter(timestamp__gte=timestamp_begin)
-        if timestamp_end:
-            books = books.filter(timestamp__lte=timestamp_end)
-        print(books.query) # DEBUG
+        for i in filterset.items():
+            if not i[1]:
+                continue
+            books = books.filter(i)
+        return books.distinct()
+
+    def filter_books_post(self, filterset):
+        """
+        does the actual filtering for post requests
+        :param filterset: dictionary with filters
+        :return: queryset
+        """
+        books = Book.objects.prefetch_related("tags", "ratings", "series", "authors")
+        # filter multiSelect fields
+        multiple = {"authors": None, "series": None, "tags": None}
+        for k, v in multiple.items():
+            is_and = filterset.pop(f"{k}_andor")
+            items = filterset.pop(k)
+            if not items:  # empty MultiSelect field
+                continue
+            if is_and:  # and filtering
+                for i in items:
+                    books = books.filter((f"{k}__id", i.id))
+            else:  # or filtering
+                books = books.filter((f"{k}__in", items))
+
+        # filter normal fields
+        for i in filterset.items():
+            if not i[1]:
+                continue
+            books = books.filter(i)
         return books
 
 
-class SearchResultsView(generic.ListView):  # no clue if this is secure.
-    # according to this https://stackoverflow.com/questions/13574043/how-do-django-forms-sanitize-text-input-to-prevent-sql-injection-xss-etc
-    # it is
+class SearchResultsView(LoginRequiredMixin, generic.ListView):
     model = Book
-    template_name = 'book_list.html'
+    template_name = 'library/book_list.html'
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
 
     def dispatch(self, *args, **kwargs):
         return super(SearchResultsView, self).dispatch(*args, **kwargs)
 
     def get_queryset(self):  # new
-        generic = self.request.GET.get("generic")
-        books = Book.objects.prefetch_related("tags", "ratings")
-        if generic:
-            author_obj = Author.objects.filter(name__icontains=generic).first()
+        form = SearchForm(data=self.request.GET)
+        if not form.is_valid():
+            return Book.objects.none()
+        generic_query = form.cleaned_data.get("generic")
+        books = Book.objects.prefetch_related("tags", "ratings", "series", "authors")
+        if generic_query:
+            author_obj = Author.objects.filter(name__icontains=generic_query).first()
             if not author_obj:
                 author_id = -1
             else:
                 author_id = author_obj.id
             books = books.filter(
-                Q(sort__icontains=generic) |
-                Q(author_sort__icontains=generic) |
+                Q(sort__icontains=generic_query) |
+                Q(author_sort__icontains=generic_query) |
                 Q(authors__id=author_id) |
-                Q(identifier__val=generic)
+                Q(identifier__val=generic_query)
             ).distinct()
         return books

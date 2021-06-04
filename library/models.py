@@ -46,7 +46,7 @@ class Comment(models.Model):
 
 
 class Data(models.Model):
-    book = models.IntegerField()
+    book = models.OneToOneField("Book", db_column="book", on_delete=models.CASCADE)
     format = models.TextField()
     uncompressed_size = models.IntegerField()
     name = models.TextField()
@@ -199,7 +199,15 @@ class Book(models.Model):
         through='BookLanguageLink',
         through_fields=('book', 'lang_code'))
 
-    @property
+    @cached_property
+    def download_link(self):
+        return f"{self.path}/{self.data.name}.{self.data.format.lower()}"
+
+    @cached_property
+    def cover_link(self):
+        return f"{self.path}/cover.jpg"
+
+    @cached_property
     def language(self):
         return self.languages.first()
 
@@ -208,7 +216,7 @@ class Book(models.Model):
         through='BookPublisherLink',
         through_fields=('book', 'publisher'))
 
-    @property
+    @cached_property
     def publisher(self):
         return self.publishers.first()
 
@@ -217,7 +225,7 @@ class Book(models.Model):
         through='BookSeriesLink',
         through_fields=('book', 'series'))
 
-    @property
+    @cached_property
     def serie(self):
         return self.series.first()
 

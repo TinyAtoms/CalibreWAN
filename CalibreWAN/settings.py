@@ -14,6 +14,7 @@ from pathlib import Path
 
 # section to use .env to seperate sensitive settings in a seperate file that shouldn't go in git
 import environ
+from django.contrib.auth import validators
 
 env = environ.Env(
     # set casting, default value
@@ -35,20 +36,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
-
+INTERNAL_IPS = ["127.0.0.1"]
 # SHAQUILLE. This was in old cwa
 # ALLOWED_HOSTS = [
 #     "*"
 # ]
-# INTERNAL_IPS =  [
-#     "127.0.0.1", "localhost"
-# ],
+
 
 # Application definition
 
 INSTALLED_APPS = [
     'dal',  # autocomplete
-    'dal_select2', # autocomplete
+    'dal_select2',  # autocomplete
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,12 +62,13 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.microsoft',
     "library",
+    'debug_toolbar',  # debug
 ]
 
 SITE_ID = 2
 
-
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # debug
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -77,6 +77,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if DEBUG:  # the REALLY hacky way to show debug toolbar
+    DEBUG_TOOLBAR_CONFIG = {
+        "SHOW_TOOLBAR_CALLBACK": lambda x: True,
+    }
 
 ROOT_URLCONF = 'CalibreWAN.urls'
 
@@ -141,6 +146,11 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_MAX_EMAIL_ADDRESSES = 3
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_SIGNUP_REDIRECT_URL = "/books"
+SOCIALACCOUNT_AUTO_SIGNUP = False  # the behaviour that irritates me
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
