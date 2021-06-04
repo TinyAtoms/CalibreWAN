@@ -13,17 +13,18 @@ from .models import Author, Book, Comment, Tag, Data, \
 logger = logging.getLogger(__name__)
 
 
-# class BookListView(generic.ListView):
-#     model = Book
-#
-#     def dispatch(self, *args, **kwargs):
-#         return super(BookListView, self).dispatch(*args, **kwargs)
-#
-#     def get_queryset(self):
-#         # Annotate the books with ratings, tags, etc
-#         # books = Book.objects.annotate(
-#         queryset = Book.objects.prefetch_related("tags", "ratings")
-#         return queryset
+class OPDSAcquisitionFeedView(generic.ListView):
+    model = Book
+    paginate_by = 100
+    template_name = 'library/opds_aquisition.html'
+
+    def dispatch(self, *args, **kwargs):
+        return super(OPDSAcquisitionFeedView, self).dispatch(*args, **kwargs)
+
+    def get_queryset(self):
+        queryset = Book.objects.prefetch_related("tags", "ratings", "series", "authors", "data", "publishers",
+                                                 "languages", "identifier_set").order_by("id")
+        return queryset
 
 
 class BookDetailView(generic.DetailView):
@@ -42,7 +43,7 @@ class BookDetailView(generic.DetailView):
         try:
             context['comment'] = Comment.objects.get(
                 book=context["object"].id).text
-        except:
+        except Comment.DoesNotExist:
             pass
         context["imgpath"] = context["object"].path + "/cover.jpg"
         download = Data.objects.get(book=context["object"].id)
@@ -106,6 +107,8 @@ class LanguageComplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
     """
     Autocomplete thing for languages, for the FilterView
     """
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
 
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
@@ -117,10 +120,13 @@ class LanguageComplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
         return qs
 
 
-class SeriesComplete(autocomplete.Select2QuerySetView):
+class SeriesComplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
     """
     Autocomplete for series
     """
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
+
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
         if not self.request.user.is_authenticated:
@@ -153,6 +159,9 @@ class FilterView(LoginRequiredMixin, generic.View):
     6. pubdate ranges
     7. added to calibre ranges
     """
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
+
     def get(self, request, *args, **kwargs):
         """
         Hijacked this to substitute for various X_detail pages, filters book where
@@ -181,31 +190,31 @@ class FilterView(LoginRequiredMixin, generic.View):
         context["book_list"] = self.filter_books_post(filter_dict)
         return render(request, 'library/results.html', context)
 
-    def filter_books_get(self, filter):
+    def filter_books_get(self, filterset):
         """
         does the actual filtering for get requests
-        :param filter: dictionary with filters
+        :param filterset: dictionary with filters
         :return: queryset
         """
-        books = Book.objects.all()
-        for i in filter.items():
+        books = Book.objects.prefetch_related("tags", "ratings", "series", "authors")
+        for i in filterset.items():
             if not i[1]:
                 continue
             books = books.filter(i)
         return books.distinct()
 
-    def filter_books_post(self, filter):
+    def filter_books_post(self, filterset):
         """
         does the actual filtering for post requests
-        :param filter: dictionary with filters
+        :param filterset: dictionary with filters
         :return: queryset
         """
         books = Book.objects.prefetch_related("tags", "ratings", "series", "authors")
         # filter multiSelect fields
         multiple = {"authors": None, "series": None, "tags": None}
         for k, v in multiple.items():
-            is_and = filter.pop(f"{k}_andor")
-            items = filter.pop(k)
+            is_and = filterset.pop(f"{k}_andor")
+            items = filterset.pop(k)
             if not items:  # empty MultiSelect field
                 continue
             if is_and:  # and filtering
@@ -215,18 +224,18 @@ class FilterView(LoginRequiredMixin, generic.View):
                 books = books.filter((f"{k}__in", items))
 
         # filter normal fields
-        for i in filter.items():
+        for i in filterset.items():
             if not i[1]:
                 continue
             books = books.filter(i)
         return books
 
 
-class SearchResultsView(generic.ListView):  # no clue if this is secure.
-    # according to this https://stackoverflow.com/questions/13574043/how-do-django-forms-sanitize-text-input-to-prevent-sql-injection-xss-etc
-    # it is
+class SearchResultsView(LoginRequiredMixin, generic.ListView):
     model = Book
-    template_name = 'book_list.html'
+    template_name = 'library/book_list.html'
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
 
     def dispatch(self, *args, **kwargs):
         return super(SearchResultsView, self).dispatch(*args, **kwargs)
@@ -235,18 +244,18 @@ class SearchResultsView(generic.ListView):  # no clue if this is secure.
         form = SearchForm(data=self.request.GET)
         if not form.is_valid():
             return Book.objects.none()
-        generic = form.cleaned_data.get("generic")
+        generic_query = form.cleaned_data.get("generic")
         books = Book.objects.prefetch_related("tags", "ratings", "series", "authors")
-        if generic:
-            author_obj = Author.objects.filter(name__icontains=generic).first()
+        if generic_query:
+            author_obj = Author.objects.filter(name__icontains=generic_query).first()
             if not author_obj:
                 author_id = -1
             else:
                 author_id = author_obj.id
             books = books.filter(
-                Q(sort__icontains=generic) |
-                Q(author_sort__icontains=generic) |
+                Q(sort__icontains=generic_query) |
+                Q(author_sort__icontains=generic_query) |
                 Q(authors__id=author_id) |
-                Q(identifier__val=generic)
+                Q(identifier__val=generic_query)
             ).distinct()
         return books

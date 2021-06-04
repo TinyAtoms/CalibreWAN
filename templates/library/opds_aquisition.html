@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {% for book in page_obj %}
+        {# Each "contact" is a Contact model object. #}
+        <div>
+            <ul>
+                <li>Title: {{ book.title }}</li>
+                <li>
+                    {% if book.authors %}
+                        Authors:
+                        {% for author in book.authors.all %} {{ author.name }},{% endfor %}
+                    {% else %} {{ book.author_sort }}
+                    {% endif %}
+                </li>
+                <li>
+                    Updated: {{ book.timestamp }}
+                </li>
+                <li>
+                    RIGHTS: ?????
+                </li>
+                <li>
+                    IDENTIFIERS: {% for id in book.identifier_set.all %}
+                    {{ id.type }} -> {{ id.val }},
+                {% endfor %}
+                </li>
+                <li>
+                    DATA: {{ book.data.name }}.{{ book.data.format }}
+                </li>
+                <li>
+                    {% if book.publishers %}
+                        Publisher:
+                        {% for pub in book.publishers.all %}{{ pub.name }}, {% endfor %}
+                    {% else %}
+                    {% endif %}
+                </li>
+                <li>
+                    {% if book.languages %}
+                        Languages:
+                        {% for lang in book.languages.all %}{{ lang.lang_code }}, {% endfor %}
+                    {% else %}
+                    {% endif %}
+                </li>
+                <li>
+                    Issued: {{ book.pubdate }}
+                </li>
+                <li>
+                    comments
+                </li>
+                <li>
+                    download: {{ book.download_link }}
+                </li>
+                <li>
+                    cover: {{ book.cover_link }}
+                </li>
+            </ul>
+        </div>
+        ...
+    {% endfor %}
+
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
+
+{% endblock %}

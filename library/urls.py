@@ -1,6 +1,5 @@
 import logging
-
-from django.urls import path
+from django.urls import include, path
 
 from . import views
 
@@ -14,6 +13,7 @@ urlpatterns = [
     path("series-autocomplete/", views.SeriesComplete.as_view(), name="series-autocomplete"),
     path("title-autocomplete/", views.TitleComplete.as_view(), name="title-autocomplete"),
 
+    path("opds/", views.OPDSAcquisitionFeedView.as_view(), name="opds"),
 
     path('results/', views.SearchResultsView.as_view(), name='results'),
     path("filter/", views.FilterView.as_view(), name="filter"),
