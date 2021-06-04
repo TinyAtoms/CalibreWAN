@@ -4,16 +4,16 @@
     {% load static %}
 
     {% if form %}
-                <div class="container">
-                <form action="{% url 'filter' %}" method="post" style="padding-top:2em">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button class="waves-effect waves-light btn blue accent-4" type="submit">search</button>
-                </form>
+        <div class="container">
+            <form action="{% url 'filter' %}" method="post" style="padding-top:2em">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="waves-effect waves-light btn blue accent-4" type="submit">search</button>
+            </form>
 
-            </div>
-{#        {% load crispy_forms_tags %}#}
-{#        {% crispy form form.helper %}#}
+        </div>
+        {#        {% load crispy_forms_tags %}#}
+        {#        {% crispy form form.helper %}#}
     {% endif %}
 
     <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
@@ -84,5 +84,5 @@
             <div class="col s1 m0">
             </div>
         </div>
-
+    </div>
 {% endblock %}

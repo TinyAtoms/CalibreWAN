@@ -12,25 +12,25 @@
                 <a style="padding-top:15%" href=" /UserLibrary/{{ download }}"><img src=" /UserLibrary/{{ imgpath }}"
                                                                                     alt="download" srcset=""></a>
             </div>
-{#        ebook reader things #}
+            {#        ebook reader things #}
             <a href="/static/ViewerJS/../../UserLibrary/{{ download }}"> READ </a>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/epub.js/0.2.13/epub.min.js"
                     integrity="sha512-ktwncEGc1G2bleGfAdTgIxyHiE5/syR19HWAN3S0soSHF8+q7E73POq13slxkTwYrJF9rVFKaKh1zbZhKK9vdg=="
                     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <div id="epub-area"></div>
             <script>
-                var book = ePub("/UserLibrary/{{ download }}");
+                var book = ePub("/UserLibrary/{{ download }}/");
                 var rendition = book.renderTo("epub-area", {width: 600, height: 400});
                 var displayed = rendition.display();
             </script>
-{#        end ebook reader things#}
+            {#        end ebook reader things#}
             <div class="card-stacked">
                 <div class="card-content">
                     <h1> {{ book.title }}</h1>
                     <h4> by
                         {% if book.authors %}
                             {% for author in book.authors.all %}
-                                <a href="">{{ author.name }}</a>
+                                <a href="">{{ author }}</a>
                             {% endfor %}
                         {% else %}
                             {{ book.author_sort }}
