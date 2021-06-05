@@ -48,6 +48,7 @@ INTERNAL_IPS = ["127.0.0.1"]
 INSTALLED_APPS = [
     'dal',  # autocomplete
     'dal_select2',  # autocomplete
+    'debug_toolbar',  # debug
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,7 +63,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.microsoft',
     "library",
-    'debug_toolbar',  # debug
 ]
 
 SITE_ID = 2

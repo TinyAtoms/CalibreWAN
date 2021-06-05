@@ -1,7 +1,8 @@
-django-environ>=0.4.5 # seperating secrets
+django-environ>=0.4.5 # separating secrets
 Django==3.2.3 # the man himself
 django-allauth>=0.44 # oAuth
 django-autocomplete-light # autocomplete
+
 # development
 django-debug-toolbar>=3.2
 # django-extensions>=3.1

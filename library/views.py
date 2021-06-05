@@ -2,29 +2,38 @@ import logging
 
 from dal import autocomplete
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.db.models import Q
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.template import loader
 from django.views import generic
 
 from .forms import BookFilterForm, SearchForm
+from .http_basic_auth import logged_in_or_basicauth
 from .models import Author, Book, Comment, Tag, Data, \
     Series, Language
 
 logger = logging.getLogger(__name__)
 
 
-class OPDSAcquisitionFeedView(generic.ListView):
-    model = Book
-    paginate_by = 100
-    template_name = 'library/opds_aquisition.html'
-
-    def dispatch(self, *args, **kwargs):
-        return super(OPDSAcquisitionFeedView, self).dispatch(*args, **kwargs)
-
-    def get_queryset(self):
-        queryset = Book.objects.prefetch_related("tags", "ratings", "series", "authors", "data", "publishers",
-                                                 "languages", "identifier_set").order_by("id")
-        return queryset
+@logged_in_or_basicauth("CalibreWAN")
+def OPDS_feed_view(request):
+    """
+    OPDS aquisition feed, borked atm
+    :param request:
+    :return:
+    """
+    queryset = Book.objects.prefetch_related("tags", "ratings", "series", "authors", "data", "publishers",
+                                             "languages", "identifier_set").order_by("id")
+    template = loader.get_template('library/opds_aquisition.xml')
+    paginator = Paginator(queryset, 100)  # Show 100 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'page_obj': page_obj
+    }
+    return HttpResponse(template.render(context, request))
 
 
 class BookDetailView(generic.DetailView):
