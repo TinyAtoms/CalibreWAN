@@ -40,17 +40,17 @@
                 {% endfor %}
             {% endif %}
             <dc:issued>{{ book.pubdate|date:"c" }}</dc:issued>
-            <content type="text">
-                {% autoescape on %}
-                    {{ book.comment.text }}
-                {% endautoescape %}
-            </content>
+{#            <content type="text">#}
+{#                {% autoescape on %}#}
+{#                    {{ book.comment_set.first.text }}#}
+{#                {% endautoescape %}#}
+{#            </content>#}
             <link rel="http://opds-spec.org/image"
                   href="CHANGEME/{{ book.cover_link }}"
                   type="image/jpeg"/>
             <link rel="http://opds-spec.org/acquisition/buy"
                   href="/CHANGEME/{{ book.download_link}}"
-                  type="application/{{ book.data.format | lower }}"/>
+                  type="application/{{ book.data_set.first.format | lower }}"/>
         </entry>
     {% endfor %}
 </feed>

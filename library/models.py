@@ -43,10 +43,13 @@ class Comment(models.Model):
         indexes = [
             models.Index(fields=["book"], name="comments_idx"),
         ]
+    def __str__(self):
+        """String for representing the MyModelName object (in Admin site etc.)."""
+        return self.text[:100]
 
 
 class Data(models.Model):
-    book = models.OneToOneField("Book", db_column="book", on_delete=models.CASCADE)
+    book = models.ForeignKey("Book", db_column="book", on_delete=models.CASCADE)
     format = models.TextField()
     uncompressed_size = models.IntegerField()
     name = models.TextField()
@@ -201,7 +204,7 @@ class Book(models.Model):
 
     @cached_property
     def download_link(self):
-        return f"{self.path}/{self.data.name}.{self.data.format.lower()}"
+        return f"{self.path}/{self.data_set.first().name}.{self.data_set.first().format.lower()}"
 
     @cached_property
     def cover_link(self):

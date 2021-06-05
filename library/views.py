@@ -24,7 +24,7 @@ def OPDS_feed_view(request):
     :param request:
     :return:
     """
-    queryset = Book.objects.prefetch_related("tags", "ratings", "series", "authors", "data", "publishers",
+    queryset = Book.objects.prefetch_related("tags", "ratings", "series", "authors", "data_set", "publishers",
                                              "languages", "identifier_set").order_by("id")
     template = loader.get_template('library/opds_aquisition.xml')
     paginator = Paginator(queryset, 100)  # Show 100 contacts per page.
@@ -33,7 +33,7 @@ def OPDS_feed_view(request):
     context = {
         'page_obj': page_obj
     }
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render(context, request), content_type="text/xml")
 
 
 class BookDetailView(generic.DetailView):
