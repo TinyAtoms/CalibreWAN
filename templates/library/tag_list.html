@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+  <h1>Tags List</h1>
+
+
+  {% if tag_list %}
+  <container class="tags">
+    {% for tag in tag_list %}
+    <a href="{{ tag.get_absolute_url }}" rel="tag">{{ tag }}</a>
+    {% endfor %}
+
+
+  </container>
+
+  {% else %}
+    <p>There are no tags in the library.</p>
+  {% endif %}       
+{% endblock %}

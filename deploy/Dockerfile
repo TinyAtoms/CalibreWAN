@@ -18,6 +18,7 @@ COPY ./static ./static
 COPY ./manage.py ./manage.py
 
 # perms
+RUN chmod a+rw /CWA /CWA/*
 RUN chown -R unit:unit /CWA
 COPY ./deploy/entrypoints/* /docker-entrypoint.d/
 RUN chmod +x /docker-entrypoint.d/start.sh

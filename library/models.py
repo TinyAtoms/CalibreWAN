@@ -127,7 +127,7 @@ class Rating(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a particular instance of MyModelName."""
-        return reverse('rating-detail-view', args=[str(self.id)])
+        return reverse('rating-detail-view', args=[str(self.rating)])
 
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""

@@ -30,14 +30,14 @@
                     <h4> by
                         {% if book.authors %}
                             {% for author in book.authors.all %}
-                                <a href="">{{ author }}</a>
+                                <a href="{{ author.get_absolute_url }}">{{ author }}</a>
                             {% endfor %}
                         {% else %}
                             {{ book.author_sort }}
                         {% endif %}
                         <br>
                         Published by
-                        {% if book.publishers %}
+                        {% if book.publishers.first %}
                             {% for pub in book.publishers.all %}
                                 <a href="{{ pub.get_absolute_url }}">{{ pub.name }}</a>
                             {% endfor %}
@@ -48,20 +48,21 @@
                         Tags:
                         {% if book.tags %}
                             {% for tag in book.tags.all %}
-                                <a href="">{{ tag.name }}</a>,
+                                <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>,
                             {% endfor %}
                         {% else %}
                         {% endif %}
                         <br>
                         Rating:
-                        {% if book.ratings %}
+                        {% if book.ratings.first %}
                             {% for rating in book.ratings.all %}
-                                <a href="">{{ rating }}</a>
+                                <a href="{{ rating.get_absolute_url }}">{{ rating }}</a>
                             {% endfor %}
                         {% else %}
+                        No rating
                         {% endif %}
                         <br>
-                        <a href="">{{ book.publisher }}</a>
+                        
                     </h4>
                 </div>
             </div>

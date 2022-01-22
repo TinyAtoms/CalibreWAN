@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+  <h1>Series List</h1>
+  {% if series_list %}
+  <ul>
+    {% for series in series_list %}
+      <li>
+        <a href="{{ series.get_absolute_url }}">{{ series.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no series in the library.</p>
+  {% endif %}       
+{% endblock %}

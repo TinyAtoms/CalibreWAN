@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+  <h1>Ratings List</h1>
+  {% if rating_list %}
+  <ul>
+    {% for rating in rating_list %}
+      <li>
+        <a href="{{ rating.get_absolute_url }}">{{ rating.rating }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no rating in the library.</p>
+  {% endif %}       
+{% endblock %}

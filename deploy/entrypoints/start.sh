@@ -20,5 +20,7 @@ fi
 
 #cp -R -u -p "/CWA/Persistent/db.sqlite3" "/CWA/Persistent/"
 ls -l /CWA
+# RUN chmod a+rw /CWA /CWA/*
+chown -R unit:unit /CWA
 python "${APPDIR}/manage.py" makemigrations
 python "${APPDIR}/manage.py" migrate

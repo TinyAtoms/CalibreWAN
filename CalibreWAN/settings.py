@@ -48,7 +48,7 @@ INTERNAL_IPS = ["127.0.0.1"]
 INSTALLED_APPS = [
     'dal',  # autocomplete
     'dal_select2',  # autocomplete
-    'debug_toolbar',  # debug
+    # 'debug_toolbar',  # debug
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -65,10 +65,10 @@ INSTALLED_APPS = [
     "library",
 ]
 
-SITE_ID = 2
+SITE_ID = 1 # changed from 2
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',  # debug
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',  # debug
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -149,7 +149,8 @@ AUTHENTICATION_BACKENDS = [
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_MAX_EMAIL_ADDRESSES = 3
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-ACCOUNT_SIGNUP_REDIRECT_URL = "/books"
+ACCOUNT_SIGNUP_REDIRECT_URL = "/"
+ACCOUNT_EMAIL_VERIFICATION = "none"
 SOCIALACCOUNT_AUTO_SIGNUP = False  # the behaviour that irritates me
 
 # Internationalization

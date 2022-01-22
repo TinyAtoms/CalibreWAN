@@ -12,7 +12,7 @@ from django.views import generic
 from .forms import BookFilterForm, SearchForm
 from .http_basic_auth import logged_in_or_basicauth
 from .models import Author, Book, Comment, Tag, Data, \
-    Series, Language
+    Series, Language, Publisher, Rating
 
 logger = logging.getLogger(__name__)
 
@@ -180,6 +180,7 @@ class FilterView(LoginRequiredMixin, generic.View):
         :param kwargs: things to filter for
         :return: rendered template
         """
+
         context = {'form': BookFilterForm(), "book_list": self.filter_books_get(kwargs)}
         return render(request, 'library/results.html', context)
 
@@ -268,3 +269,48 @@ class SearchResultsView(LoginRequiredMixin, generic.ListView):
                 Q(identifier__val=generic_query)
             ).distinct()
         return books
+
+
+
+## list views, to be moved over to a resultview
+class AuthorListView(LoginRequiredMixin, generic.ListView):
+    model = Author
+    ordering = ['sort']
+
+    def dispatch(self, *args, **kwargs):
+        return super(AuthorListView, self).dispatch(*args, **kwargs)
+
+
+
+
+
+class PublisherListView(LoginRequiredMixin, generic.ListView):
+    model = Publisher
+    ordering = ['name']
+
+    def dispatch(self, *args, **kwargs):
+        return super(PublisherListView, self).dispatch(*args, **kwargs)
+
+
+class RatingListView(LoginRequiredMixin, generic.ListView):
+    model = Rating
+    ordering = ['rating']
+
+    def dispatch(self, *args, **kwargs):
+        return super(RatingListView, self).dispatch(*args, **kwargs)
+
+
+class SeriesListView(LoginRequiredMixin, generic.ListView):  # make url entry and template, sometime
+    model = Series
+    ordering = ['name']
+
+    def dispatch(self, *args, **kwargs):
+        return super(SeriesListView, self).dispatch(*args, **kwargs)
+
+
+class TagListView(LoginRequiredMixin, generic.ListView):
+    model = Tag
+    ordering = ['name']
+
+    def dispatch(self, *args, **kwargs):
+        return super(TagListView, self).dispatch(*args, **kwargs)
