@@ -35,6 +35,7 @@ sudo docker run --publish 80:80 \
 ```
 copy over the database from ./Persistent to the volume you're mounting as /CWA/Persistent
 
+Here's an example:
 ```
 sudo docker run --publish 80:80 \
 -v '/home/massiveatoms/demo/CalibreWAN/UserLibrary:/CWA/UserLibrary' \
@@ -54,9 +55,9 @@ Set the homepage to what you're going to host it as, for example
 "https://calibreserver.yourdomain.com/"  
 Set the callback to `https://calibreserver.yourdomain.com/accounts/github/login/callback/`
 
-Copy the client ID and generated client secret
-client ID= fbc8daad087cea12b9d8
-secret: 6dc77fb4f168d182e6799baa42e61a8e2317555e
+Copy the client ID and generated client secret from github to the form
+save
+
 
 
 
