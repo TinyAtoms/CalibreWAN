@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:dc="http://purl.org/dc/terms/"
+      xmlns:opds="CHANGEME">
+    <id>urn:uuid:CHANGEME</id>
+
+    <title>Calibre Library</title>
+    <updated>{% now "c" %}</updated>
+    <author>
+        <name>Sagar Ramsaransing</name>
+        <uri>CHANGETHIS</uri>
+    </author>
+    {% for book in page_obj %}
+        <entry>
+            <title>{{ book.title }}</title>
+            <id>urn:id:{{ book.id }}</id>
+            {% if book.authors %}
+                {% for author in book.authors.all %}
+                    <author>
+                        <name>{{ author.sort }}</name>
+                        <uri>CHANGETHIS/{{ author.id }}</uri>
+                    </author>
+                {% endfor %}
+            {% endif %}
+            <updated>{{ book.timestamp |date:"c" }}</updated>
+            <rights>Copyright (c) {{ book.pubdate|date:"Y" }},{{ book.publisher }} </rights>
+            {% if book.identifier_set %}
+                {% for id in book.identifier_set.all %}
+                    <dc:identifier>urn:{{ id.type }}:{{ id.val }}</dc:identifier>
+                {% endfor %}
+            {% endif %}
+            {% if book.publishers %}
+                {% for pub in book.publishers.all %}
+                    <dc:publisher>{{ pub.name }}</dc:publisher>
+                {% endfor %}
+            {% endif %}
+            {% if book.languages %}
+                {% for lang in book.languages.all %}
+                    <dc:language>{{ lang.lang_code }}</dc:language>
+                {% endfor %}
+            {% endif %}
+            <dc:issued>{{ book.pubdate|date:"c" }}</dc:issued>
+{#            <content type="text">#}
+{#                {% autoescape on %}#}
+{#                    {{ book.comment_set.first.text }}#}
+{#                {% endautoescape %}#}
+{#            </content>#}
+            <link rel="http://opds-spec.org/image"
+                  href="CHANGEME/{{ book.cover_link }}"
+                  type="image/jpeg"/>
+            <link rel="http://opds-spec.org/acquisition/buy"
+                  href="/CHANGEME/{{ book.download_link}}"
+                  type="application/{{ book.data_set.first.format | lower }}"/>
+        </entry>
+    {% endfor %}
+</feed>
