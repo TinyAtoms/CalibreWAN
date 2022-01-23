@@ -6,14 +6,12 @@
 {% if form %}
 <form action="{% url 'filter' %}" method="post" style="padding-top:2em">
     {% csrf_token %}
-    
-    {{ form.as_p }}
-
+        {{ form.as_ul }}
     <button class="btn btn-primary" type="submit">search</button>
 </form>
-
-
 {% endif %}
+
+
 
 <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
 {{ form.media }}

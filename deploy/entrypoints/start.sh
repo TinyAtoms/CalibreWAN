@@ -1,8 +1,6 @@
 APPDIR="/CWA"
 USER_DIR="/CWA/UserLibrary"
 PERSISTENT="/CWA/Persistent"
-
-
 if [ ! -d "$USER_DIR" ]; then
   echo "Calibre Library not mounted at the correct location."
   echo "Mount it at /CWA/UserLibrary/"
