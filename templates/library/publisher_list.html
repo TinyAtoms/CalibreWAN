@@ -2,15 +2,21 @@
 
 {% block content %}
 {% load static %}
+
+
+
+
+<br>
+<br>
   <h1>Publisher List</h1>
   {% if publisher_list %}
-  <ul>
+  <container class="tags">
     {% for publisher in publisher_list %}
-      <li>
-        <a href="{{ publisher.get_absolute_url }}">{{ publisher.name }}</a>
-      </li>
+    <a href="{{ publisher.get_absolute_url }}" rel="publisher">{{ publisher.name }}</a>
     {% endfor %}
-  </ul>
+  </container>
+
+
   {% else %}
     <p>There are no publisher in the library.</p>
   {% endif %}       
