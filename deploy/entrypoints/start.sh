@@ -22,3 +22,4 @@ ls -l /CWA
 chown -R unit:unit /CWA
 python "${APPDIR}/manage.py" makemigrations
 python "${APPDIR}/manage.py" migrate
+ls -l /CWA/static
