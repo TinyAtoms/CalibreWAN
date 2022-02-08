@@ -1,0 +1,55 @@
+p.count {
+    color: #FFFFFF;
+    background-color: #515151;
+    border: 1px #303030;
+    border-radius: 0.5rem;
+    padding: .2rem .25rem;
+    margin: 0.1rem 0.1rem .1rem;
+
+}
+
+
+
+/* stefan, this is my tag style */
+.tags a {
+    color: #000000;
+    background-color: #43A047;
+    font-size: 1em;
+    white-space: nowrap;
+    border-radius: 2rem;
+    padding:  .25rem .85rem .25rem;
+    line-height: 2;
+    margin: .2rem;
+    text-decoration: none;
+}
+
+.authors a {
+    color: #000000;
+    background-color: #43A047;
+    font-size: .75;
+    white-space: nowrap;
+    border-radius: 2rem;
+    padding: .25rem .85rem .25rem;
+    line-height: 2;
+    margin: 0.2rem;
+    text-decoration: none;
+}
+
+.tags {
+    display: flex;
+    flex-flow: row wrap;
+
+}
+
+.authors {
+    display: flex;
+    flex-flow: row wrap;
+
+}
+
+.paginate_button {
+    color: gray;
+    border: gray 1px solid;
+    padding: 0.5em;
+
+}

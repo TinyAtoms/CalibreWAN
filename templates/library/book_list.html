@@ -2,28 +2,41 @@
 
 {% block content %}
 {% load static %}
-    <h1 class="center">Book List</h1>
+<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 
-    <table id="books" class="table table-hover table-responsive table-bordered">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css">
+
+<h1 class="center">Book List</h1>
+<script nonce="{{ request.csp_nonce }}">
+    $(document).ready(function () {
+        $('#books').DataTable({ "searching": false, "pageLength": 50 });
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>
+
+<div class="container-fluid">
+    <table id="books" class="table table-hover table-striped table-responsive table-bordered">
+        <caption>Table with found books</caption>
         <thead class="thead-dark">
             <tr>
                 <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-                <th scope="col" class="title" onclick="sortTable(0)">Title</th>
-                <th scope="col" class="author" onclick="sortTable(1)">Author</th>
-                <th scope="col" class="rating" onclick="sortTable(2)">Rating</th>
-                <th scope="col" class="tags" onclick="sortTable(3)">Tags</th>
-                <th scope="col" class="added" onclick="sortTable(4)">Added</th>
-                <th scope="col" class="published" onclick="sortTable(5)">Published</th>
+                <th scope="col" class="title">Title</th>
+                <th scope="col" class="author">Author</th>
+                <th scope="col" class="rating">Rating</th>
+                <th scope="col" class="tags">Tags</th>
+                <th scope="col" class="added">Added</th>
+                <th scope="col" class="published">Published</th>
             </tr>
         </thead>
 
         <tbody>
             {% for book in book_list %}
             <tr>
-                <td><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></td>
+                <th scope="row"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></th>
                 <td class="authors">
                     {% for author in book.authors.all %}
-                        <a href="{{ author.get_absolute_url }}" rel="author">{{ author }}</a>
+                    <a href="{{ author.get_absolute_url }}" rel="author">{{ author }}</a>
                     {% endfor %}
 
                 </td>
@@ -35,15 +48,15 @@
                 <td class="tags">
                     <!-- stefan  -->
                     {% for tag in book.tags.all %}
-                        <a href="{{ tag.get_absolute_url }}" rel="tag">{{ tag }}</a>
+                    <a href="{{ tag.get_absolute_url }}" rel="tag">{{ tag }}</a>
                     {% endfor %}
                 </td>
                 <td>{{ book.timestamp | date:"d/m/Y" }}</td>
                 <td>{{ book.pubdate.year }}</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
 
 
     </table>
-{% endblock %}
+    {% endblock %}

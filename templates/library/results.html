@@ -46,7 +46,7 @@
                 <select name="tags" id="id_tags" data-autocomplete-light-language="en"
                     data-autocomplete-light-url="/tag-autocomplete/" data-autocomplete-light-function="select2"
                     multiple></select>
-                <div style="display:none" class="dal-forward-conf" id="dal-forward-conf-for_id_tags">
+                <div class="dal-forward-conf" id="dal-forward-conf-for_id_tags">
                     <script type="text/dal-forward-conf">[{"type": "field", "src": "authors"}]</script>
                 </div>
                 </li>
@@ -75,7 +75,7 @@
                 <select name="series" id="id_series" data-autocomplete-light-language="en"
                     data-autocomplete-light-url="/series-autocomplete/" data-autocomplete-light-function="select2"
                     multiple></select>
-                <div style="display:none" class="dal-forward-conf" id="dal-forward-conf-for_id_series">
+                <div class="dal-forward-conf" id="dal-forward-conf-for_id_series">
                     <script
                         type="text/dal-forward-conf">[{"type": "field", "src": "authors"}, {"type": "field", "src": "tags"}]</script>
                 </div>
@@ -380,7 +380,7 @@
     <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
     {{ form.media }}
     
-    <script>
+    <script nonce="{{ request.csp_nonce }}">
         (function ($) {
             $('#add-form').click(function () {
                 var index = $('#id_inline_test_models-TOTAL_FORMS').val()
@@ -411,7 +411,7 @@
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css">
 
-<script>
+<script nonce="{{ request.csp_nonce }}">
     $(document).ready(function () {
         $('#books').DataTable({"searching" : false, "pageLength": 50});
         $('.dataTables_length').addClass('bs-select');
@@ -421,6 +421,7 @@
 
 <div class="container-fluid">
         <table id="books" class="table table-hover table-striped table-responsive table-bordered">
+            <caption>Table with found books</caption>
             <thead class="thead-dark">
                 <tr>
                     <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
@@ -436,7 +437,7 @@
             <tbody>
                 {% for book in book_list %}
                 <tr>
-                    <td><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></td>
+                    <th scope="row"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></th>
                     <td class="authors">
                         {% for author in book.authors.all %}
                         <a href="{{ author.get_absolute_url }}" rel="author">{{ author }}</a>

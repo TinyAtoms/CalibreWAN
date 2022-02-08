@@ -18,12 +18,17 @@ from django.contrib.auth import validators
 
 env = environ.Env(
     # set casting, default value
-    # DEBUG=(bool, False)
+    DEBUG=(bool, False),
+    ALLOWED_HOSTS=(list, [])
 )
 # reading .env file
 environ.Env.read_env()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
+# Point to custom account adapter.
+ACCOUNT_ADAPTER = 'CalibreWAN.adapter.CustomAccountAdapter'
+ACCOUNT_ALLOW_SIGNUPS= env("ACCOUNT_ALLOW_SIGNUPS")
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,10 +38,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
-INTERNAL_IPS = ["127.0.0.1"]
+#ALLOWED_HOSTS = env("ALLOWED_HOSTS")
+ALLOWED_HOSTS=[ "10.10.1.13", "cwa.eu.aperturect.com"]
+INTERNAL_IPS = ["10.10.1.13"]
 # SHAQUILLE. This was in old cwa
 # ALLOWED_HOSTS = [
 #     "*"
@@ -76,6 +82,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
 
 if DEBUG:  # the REALLY hacky way to show debug toolbar
@@ -153,6 +160,7 @@ ACCOUNT_SIGNUP_REDIRECT_URL = "/"
 ACCOUNT_EMAIL_VERIFICATION = "none"
 SOCIALACCOUNT_AUTO_SIGNUP = False  # the behaviour that irritates me
 LOGIN_REDIRECT_URL = "/"
+ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -176,3 +184,50 @@ STATIC_ROOT = BASE_DIR / 'static'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# CSP stuff
+
+# default source as self
+CSP_DEFAULT_SRC = ("'self'", )
+  
+# style from our domain and bootstrapcdn
+CSP_STYLE_SRC = ("'self'",
+    "cdnjs.cloudflare.com",
+    "cdn.datatables.net",
+    "use.fontawesome.com",
+    "fonts.googleapis.com",
+    )
+  
+# scripts from our domain and other domains
+CSP_SCRIPT_SRC = ("'self'",
+    "cdnjs.cloudflare.com",
+    "cdn.datatables.net"
+    )
+
+CSP_IMG_SRC = ("'self'",
+    "www.google-analytics.com",
+    "raw.githubusercontent.com",
+    "googleads.g.doubleclick.net")
+  
+# loading manifest, workers, frames, etc
+CSP_FONT_SRC = ("'self'",
+                "use.fontawesome.com",
+                "fonts.googleapis.com",
+                "fonts.gstatic.com" 
+                )
+                
+CSP_CONNECT_SRC = ("'self'",)
+CSP_OBJECT_SRC = ("'self'", )
+CSP_BASE_URI = ("'self'", )
+CSP_FRAME_ANCESTORS = ("'self'", )
+CSP_FORM_ACTION = ("'self'", )
+CSP_INCLUDE_NONCE_IN = ('script-src', )
+CSP_MANIFEST_SRC = ("'self'", )
+CSP_WORKER_SRC = ("'self'", )
+CSP_MEDIA_SRC = ("'self'", )
+CSP_INCLUDE_NONCE_IN=['script-src']
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = "Strict"
+SESSION_COOKIE_SAMESITE = "Strict"

@@ -1,7 +1,9 @@
+wheel 
 django-environ>=0.4.5 # seperating secrets
 Django==3.2.11 # the man himself
 django-allauth>=0.44 # oAuth
 django-autocomplete-light # autocomplete
+django-csp==3.7
 
 # development
 django-debug-toolbar>=3.2

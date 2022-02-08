@@ -10,6 +10,7 @@
         <h1> {{ book.title }}</h1>
 
         <table class="table table-hover table-striped table-sm table-bordered w-50">
+            <caption>Metadata of the book</caption>
             <tbody>
                 <tr>
                     <td scope="row" class="black white-text">Author(s)</td>
@@ -68,14 +69,21 @@
         </table>
 
 
-        <div class="col s12 m7">
-            <div class="card z-depth-0 horizontal">
-                <div class="card-image">
+
+                <div class="card-image justify-content-md-center d-flex flex-row">
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"
                         integrity="sha512-uVSVjE7zYsGz4ag0HEzfugJ78oHCI1KhdkivjQro8ABL/PRiEO4ROwvrolYAcZnky0Fl/baWKYilQfWvESliRA=="
                         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-                    <a style="padding-top:15%" href=" /UserLibrary/{{ download }}"><img src=" /UserLibrary/{{ imgpath }}"
-                            alt="download" srcset=""></a>
+
+                        <figure>
+                            <a href=" /UserLibrary/{{ download }}"><img src=" /UserLibrary/{{ imgpath }}"
+                                alt="book cover. Click on it to download" srcset=""  class="shadow-3 z-depth-5 justify-content-md-center"></a>
+                            <figcaption>Download/view book</figcaption>
+                          </figure> 
+
+
+
+                    
                 </div>
                 {# ebook reader things #}
                 <a href="/static/ViewerJS/../../UserLibrary/{{ download }}"> READ </a>
@@ -91,8 +99,6 @@
                 {# end ebook reader things#}
 
 
-    </div>
-</div>
 
 
 {% endblock %}
