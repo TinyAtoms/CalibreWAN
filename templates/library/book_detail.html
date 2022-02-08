@@ -7,103 +7,79 @@
 
 
 
-        <h1> {{ book.title }}</h1>
+<h1> {{ book.title }}</h1>
 
-        <table class="table table-hover table-striped table-sm table-bordered w-50">
-            <caption>Metadata of the book</caption>
-            <tbody>
-                <tr>
-                    <td scope="row" class="black white-text">Author(s)</td>
-                    <td class=> {% if book.authors %}
-                        {% for author in book.authors.all %}
-                        <a href="{{ author.get_absolute_url }}">{{ author }}</a>
-                        {% endfor %}
-                        {% else %}
-                        {{ book.author_sort }}
-                        {% endif %}
-                    </td>
-                </tr>
-                <tr>
-                    <td scope="row" class="black white-text">Publisher</td>
-                    <td>
-                        {% if book.publishers.first %}
-                        {% for pub in book.publishers.all %}
-                        <a href="{{ pub.get_absolute_url }}">{{ pub.name }}</a>
-                        {% endfor %}
-                        {% else %}
-                        Unknown
-                        {% endif %}
+<table class="table table-hover table-striped table-sm table-bordered w-50">
+    <caption>Metadata of the book</caption>
+    <tbody>
+        <tr>
+            <td scope="row" class="black white-text">Author(s)</td>
+            <td class=> {% if book.authors %}
+                {% for author in book.authors.all %}
+                <a href="{{ author.get_absolute_url }}">{{ author }}</a>
+                {% endfor %}
+                {% else %}
+                {{ book.author_sort }}
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td scope="row" class="black white-text">Publisher</td>
+            <td>
+                {% if book.publishers.first %}
+                {% for pub in book.publishers.all %}
+                <a href="{{ pub.get_absolute_url }}">{{ pub.name }}</a>
+                {% endfor %}
+                {% else %}
+                Unknown
+                {% endif %}
 
-                    </td>
-                </tr>
-                <tr>
-                    <td scope="row" class="black white-text">Tag(s)</td>
-                    <td> {% if book.tags %}
-                        {% for tag in book.tags.all %}
-                        <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>,
-                        {% endfor %}
-                        {% else %}
-                        None
-                        {% endif %}
-                    </td>
-                </tr>
-                <tr>
-                    <td scope="row" class="black white-text">Rating</td>
-                    <td> {% if book.ratings.first %}
-                        {% for rating in book.ratings.all %}
-                        <a href="{{ rating.get_absolute_url }}">{{ rating }}</a>
-                        {% endfor %}
-                        {% else %}
-                        No rating
-                        {% endif %}
-                    </td>
-                </tr>
+            </td>
+        </tr>
+        <tr>
+            <td scope="row" class="black white-text">Tag(s)</td>
+            <td> {% if book.tags %}
+                {% for tag in book.tags.all %}
+                <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>,
+                {% endfor %}
+                {% else %}
+                None
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td scope="row" class="black white-text">Rating</td>
+            <td> {% if book.ratings.first %}
+                {% for rating in book.ratings.all %}
+                <a href="{{ rating.get_absolute_url }}">{{ rating }}</a>
+                {% endfor %}
+                {% else %}
+                No rating
+                {% endif %}
+            </td>
+        </tr>
 
-                <tr>
-                    <td scope="row" class="black white-text">Description</td>
-                    <td> {% autoescape off %}
-                        {{ comment }}
-                        {% endautoescape %}</td>
-                </tr>
-            </tbody>
-        </table>
-
-
-
-                <div class="card-image justify-content-md-center d-flex flex-row">
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"
-                        integrity="sha512-uVSVjE7zYsGz4ag0HEzfugJ78oHCI1KhdkivjQro8ABL/PRiEO4ROwvrolYAcZnky0Fl/baWKYilQfWvESliRA=="
-                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<<<<<<< HEAD
-
-                        <figure>
-                            <a href=" /UserLibrary/{{ download }}"><img src=" /UserLibrary/{{ imgpath }}"
-                                alt="book cover. Click on it to download" srcset=""  class="shadow-3 z-depth-5 justify-content-md-center"></a>
-                            <figcaption>Download/view book</figcaption>
-                          </figure> 
+        <tr>
+            <td scope="row" class="black white-text">Description</td>
+            <td> {% autoescape off %}
+                {{ comment }}
+                {% endautoescape %}</td>
+        </tr>
+    </tbody>
+</table>
 
 
 
-                    
-=======
-                    <a href=" /UserLibrary/{{ download }}"><img src=" /UserLibrary/{{ imgpath }}"
-                            alt="download" srcset=""  class="shadow-3 z-depth-5 justify-content-md-center"></a>
->>>>>>> e69615c4475321dc331460e8ec0c47eb935bb5f4
-                </div>
-                {# ebook reader things #}
-                <a href="/static/ViewerJS/../../UserLibrary/{{ download }}"> READ </a>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/epub.js/0.2.13/epub.min.js"
-                    integrity="sha512-ktwncEGc1G2bleGfAdTgIxyHiE5/syR19HWAN3S0soSHF8+q7E73POq13slxkTwYrJF9rVFKaKh1zbZhKK9vdg=="
-                    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-                <div id="epub-area"></div>
-                <script>
-                    var book = ePub("/UserLibrary/{{ download }}/");
-                    var rendition = book.renderTo("epub-area", { width: 600, height: 400 });
-                    var displayed = rendition.display();
-                </script>
-                {# end ebook reader things#}
+<div class="card-image justify-content-md-center d-flex flex-row">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"
+        integrity="sha512-uVSVjE7zYsGz4ag0HEzfugJ78oHCI1KhdkivjQro8ABL/PRiEO4ROwvrolYAcZnky0Fl/baWKYilQfWvESliRA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
-
-
+    <figure>
+        <a href=" /UserLibrary/{{ download }}"><img src=" /UserLibrary/{{ imgpath }}"
+                alt="book cover. Click on it to download" srcset=""
+                class="shadow-3 z-depth-5 justify-content-md-center"></a>
+        <figcaption>Download/view book</figcaption>
+    </figure>
+</div>
 {% endblock %}
