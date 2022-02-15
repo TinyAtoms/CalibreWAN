@@ -18,6 +18,7 @@ COPY ./templates ./templates
 COPY ./static ./static
 COPY ./manage.py ./manage.py
 COPY ./api ./api
+COPY ./locale ./locale
 
 # perms
 RUN chmod a+rw /CWA /CWA/*

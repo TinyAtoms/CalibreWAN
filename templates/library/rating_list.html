@@ -2,7 +2,8 @@
 
 {% block content %}
 {% load static %}
-  <h1>Ratings List</h1>
+{% load i18n %}
+  <h1>{% trans 'List of ratings' %}</h1>
   {% if rating_list %}
   <ul>
     {% for rating in rating_list %}
@@ -12,6 +13,6 @@
     {% endfor %}
   </ul>
   {% else %}
-    <p>There are no rating in the library.</p>
+    <p>{% trans 'No ratings in lib' %}</p>
   {% endif %}       
 {% endblock %}

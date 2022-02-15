@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+{% load l10n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +28,6 @@
 
 <body class="bg-grey">
     {% load account %}
-    {% load static %}
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/">CalibreWAN</a>
@@ -38,30 +39,24 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'authors' %}>Authors</a>
+                    <a class="nav-link" href={% url 'authors' %}>{% trans 'Authors' %}</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'publishers' %}>Publishers</a>
+                    <a class="nav-link" href={% url 'publishers' %}>{% trans 'Publishers' %}</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'ratings' %}>Ratings</a>
+                    <a class="nav-link" href={% url 'ratings' %}>{% trans 'Ratings' %}</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'series' %}>Series</a>
+                    <a class="nav-link" href={% url 'series' %}>{% trans 'Series' %}</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'tags' %}>Tags</a>
+                    <a class="nav-link" href={% url 'tags' %}>{% trans 'Tags' %}</a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href={% url 'publishers' %}>Publishers</a>
-                </li>
-
-
             </ul>
 
             <ul class="navbar-nav mr-auto">
@@ -75,7 +70,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Advanced search</a>
+                    <a class="nav-link" href="/">{% trans 'Advanced search' %}</a>
                 </li>
             </ul>
             <ul class="navbar-nav mr-auto">
@@ -83,7 +78,7 @@
                     <a class="nav-link" href="#">{% user_display user %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/accounts/logout">Log out</a>
+                    <a class="nav-link" href="/accounts/logout">{% trans 'Sign Out' %}</a>
                 </li>
             </ul>
 

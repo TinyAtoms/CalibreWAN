@@ -1,11 +1,11 @@
 
-
+{% load i18n %}
 {% block content %}
         <form action="{% url 'results' %}" method="get">
             <div class="form-group">
-            <label for="generic">Title: </label>
+            <label for="generic">{% trans 'Title' %} :</label>
             <input id="generic" type="text" name="generic" value="">
-            <button class="btn btn-primary" type="submit">search</button>
+            <button class="btn btn-primary" type="submit">{% trans 'search' %}</button>
         </div>
         </form>
 

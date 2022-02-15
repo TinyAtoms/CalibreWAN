@@ -2,7 +2,8 @@
 
 {% block content %}
 {% load static %}
-  <h1>Tags List</h1>
+{% load i18n %}
+  <h1>{% trans 'List of tags' %}</h1>
 
 
   {% if tag_list %}
@@ -15,6 +16,6 @@
   </container>
 
   {% else %}
-    <p>There are no tags in the library.</p>
+    <p>{% trans 'no tags in lib' %}</p>
   {% endif %}       
 {% endblock %}

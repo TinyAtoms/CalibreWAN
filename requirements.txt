@@ -5,6 +5,7 @@ django-allauth>=0.44 # oAuth
 django-autocomplete-light # autocomplete
 django-csp==3.7
 django-ninja
+python-gettext>=4.0 # localisation
 
 # development
 django-debug-toolbar>=3.2

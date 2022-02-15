@@ -15,7 +15,7 @@ from pathlib import Path
 # section to use .env to seperate sensitive settings in a seperate file that shouldn't go in git
 import environ
 from django.contrib.auth import validators
-
+from django.utils.translation import ugettext_lazy as _
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
@@ -76,14 +76,15 @@ SITE_ID = 1 # changed from 2
 
 MIDDLEWARE = [
     # 'debug_toolbar.middleware.DebugToolbarMiddleware',  # debug
-    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware', # security
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # auth
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'csp.middleware.CSPMiddleware',
+    'django.middleware.locale.LocaleMiddleware', #translation
+    'django.middleware.clickjacking.XFrameOptionsMiddleware', # security
+    'csp.middleware.CSPMiddleware', # security
 ]
 
 if DEBUG:  # the REALLY hacky way to show debug toolbar
@@ -165,7 +166,6 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -174,6 +174,16 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LOCALE_PATHS = (
+    BASE_DIR / "locale",
+)
+
+LANGUAGES = (
+    ('en-us', _('English')),
+    ('nl', _('Dutch')),
+)
+LANGUAGE_CODE = 'en-us' 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

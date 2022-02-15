@@ -2,7 +2,8 @@
 
 {% block content %}
 {% load static %}
-  <h1>Series List</h1>
+{% load i18n %}
+  <h1>{% trans 'List of series' %}</h1>
   {% if series_list %}
   <ul>
     {% for series in series_list %}
@@ -12,6 +13,6 @@
     {% endfor %}
   </ul>
   {% else %}
-    <p>There are no series in the library.</p>
+    <p>{% trans 'no series in lib' %}</p>
   {% endif %}       
 {% endblock %}

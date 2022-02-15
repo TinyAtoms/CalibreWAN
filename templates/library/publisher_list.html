@@ -2,13 +2,14 @@
 
 {% block content %}
 {% load static %}
+{% load i18n %}
 
 
 
 
 <br>
 <br>
-  <h1>Publisher List</h1>
+  <h1>{% trans 'List of publishers' %}</h1>
   {% if publisher_list %}
   <container class="tags">
     {% for publisher in publisher_list %}
@@ -18,6 +19,6 @@
 
 
   {% else %}
-    <p>There are no publisher in the library.</p>
+    <p>{% trans 'No publishers in lib' %}</p>
   {% endif %}       
 {% endblock %}

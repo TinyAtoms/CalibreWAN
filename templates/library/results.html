@@ -2,7 +2,7 @@
 
 {% block content %}
 {% load static %}
-
+{% load i18n %}
 {% if form %}
 
 
@@ -15,7 +15,7 @@
     
         <div class="row">
             <div class="col">
-                <label for="id_authors">Authors</label>
+                <label for="id_authors">{% trans 'Autors' %}</label>
             </div>
     
             <div class="col">
@@ -25,22 +25,22 @@
             </div>
     
             <div class="col">
-                <label for="id_authors_andor_0">filter:</label>
+                <label for="id_authors_andor_0">{% trans 'filtertype' %}</label>
             </div>
     
             <div class="col">
                 <div class="form-check form-check-inline">
                     <label for="id_authors_andor_0"><input type="radio" name="authors_andor" class="form-check-label"
-                            value="0" id="id_authors_andor_0" checked>or/any</label>
+                            value="0" id="id_authors_andor_0" checked>{% trans 'any/or' %}</label>
                     <label for="id_authors_andor_1"><input type="radio" name="authors_andor" class="form-check-label"
-                            value="1" id="id_authors_andor_1"> and/all</label>
+                            value="1" id="id_authors_andor_1">{% trans 'all/and' %}</label>
                 </div>
             </div>
         </div>
     
         <div class="row">
             <div class="col">
-                <label for="id_tags">Tags</label>
+                <label for="id_tags">{% trans 'Tags' %}</label>
             </div>
             <div class="col">
                 <select name="tags" id="id_tags" data-autocomplete-light-language="en"
@@ -53,23 +53,23 @@
             </div>
     
             <div class="col">
-                <label for="id_tags_andor_0">filter:</label>
+                <label for="id_tags_andor_0">{% trans 'filtertype' %}</label>
             </div>
     
             <div class="col">
                 <div class="form-check form-check-inline">
     
                     <label for="id_tags_andor_0"><input type="radio" name="tags_andor" class="form-check-label" value="0"
-                            id="id_tags_andor_0" checked>or/any</label>
+                            id="id_tags_andor_0" checked>{% trans 'any/or' %}</label>
                     <label for="id_tags_andor_1"><input type="radio" name="tags_andor" class="form-check-label" value="1"
-                            id="id_tags_andor_1">and/all</label>
+                            id="id_tags_andor_1">{% trans 'all/and' %}</label>
                 </div>
             </div>
         </div>
     
         <div class="row">
             <div class="col">
-                <label for="id_series">Series</label>
+                <label for="id_series">{% trans 'Series' %}</label>
             </div>
             <div class="col">
                 <select name="series" id="id_series" data-autocomplete-light-language="en"
@@ -82,7 +82,7 @@
             </div>
     
             <div class="col">
-                <label for="id_series_andor_0">filter:</label>
+                <label for="id_series_andor_0">{% trans 'filtertype' %}</label>
             </div>
     
     
@@ -90,9 +90,9 @@
                 <div class="form-check form-check-inline">
     
                     <label for="id_series_andor_0"><input type="radio" name="series_andor" value="0" id="id_series_andor_0"
-                            checked>or/any</label>
+                            checked>{% trans 'any/or' %}</label>
                     <label for="id_series_andor_1"><input type="radio" name="series_andor" value="1"
-                            id="id_series_andor_1">and/all</label>
+                            id="id_series_andor_1">{% trans 'all/and' %}</label>
                 </div>
             </div>
         </div>
@@ -100,16 +100,16 @@
     
         <div class="row">
             <div class="col">
-                <label for="id_languages">Language:</label>
+                <label for="id_languages">{% trans 'Language' %}:</label>
             </div>
             <div class="col">
                 <select name="languages" id="id_languages" data-autocomplete-light-language="en"
                     data-autocomplete-light-url="/lang-autocomplete/" data-autocomplete-light-function="select2">
-                    <option value="" selected>Language</option>
+                    <option value="" selected>{% trans 'Language' %}</option>
                 </select>
             </div>
             <div class="col">
-                <label for="id_ratings__rating__gte">Minimum rating:</label>
+                <label for="id_ratings__rating__gte">{% trans 'MinRating' %}</label>
             </div>
             <div class="col">
                 <select name="ratings__rating__gte" id="id_ratings__rating__gte">
@@ -132,7 +132,7 @@
     
         <div class="row">
             <div class="col">
-                <label for="id_pubdate__gte">Published between year</label>
+                <label for="id_pubdate__gte">{% trans 'Published between' %}</label>
             </div>
     
             <div class="col">
@@ -140,7 +140,7 @@
             </div>
     
             <div class="col">
-                <label for="pubdate__lte">and year </label>
+                <label for="pubdate__lte">{% trans 'and' %} </label>
             </div>
     
             <div class="col">
@@ -150,7 +150,7 @@
     
         <div class="row">
             <div class="col">
-                <label for="id_timestamp__gte_month">Added to calibre after </label>
+                <label for="id_timestamp__gte_month">{% trans 'Added to Calibre after' %} </label>
             </div>
     
             <div class="col">
@@ -261,7 +261,7 @@
             </div>
     
             <div class="col">
-                <label for="id_timestamp__lte_month"> and before </label>
+                <label for="id_timestamp__lte_month"> {% trans 'and before' %}</label>
     
             </div>
     
@@ -374,7 +374,7 @@
     
     
         </div>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{% trans 'search' %}</button>
     </form>
 
     <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
@@ -404,7 +404,7 @@
 
 
 {% endif %}
-<h1 class="center">Books</h1>
+<h1 class="center">{% trans 'Books' %}</h1>
 
 <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
@@ -421,16 +421,16 @@
 
 <div class="container-fluid">
         <table id="books" class="table table-hover table-striped table-responsive table-bordered">
-            <caption>Table with found books</caption>
+            <caption>{% trans 'Table with found books' %}</caption>
             <thead class="thead-dark">
                 <tr>
                     <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-                    <th scope="col" class="title" >Title</th>
-                    <th scope="col" class="author" >Author</th>
-                    <th scope="col" class="rating" >Rating</th>
-                    <th scope="col" class="tags" >Tags</th>
-                    <th scope="col" class="added" >Added</th>
-                    <th scope="col" class="published">Published</th>
+                    <th scope="col" class="title" >{% trans 'Title' %}</th>
+                    <th scope="col" class="author" >{% trans 'Author' %}</th>
+                    <th scope="col" class="rating" >{% trans 'Rating' %}</th>
+                    <th scope="col" class="tags" >{% trans 'Tags' %}</th>
+                    <th scope="col" class="added" >{% trans 'Added on' %}</th>
+                    <th scope="col" class="published">{% trans 'Published on' %}</th>
                 </tr>
             </thead>
     

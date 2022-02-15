@@ -1,0 +1,252 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-15 21:02+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: CalibreWAN/settings.py:183
+msgid "English"
+msgstr "Engels"
+
+#: CalibreWAN/settings.py:184
+msgid "Dutch"
+msgstr "Nederlands"
+
+#: templates/account/base.html:49
+msgid "change email"
+msgstr "Verander e-mail"
+
+#: templates/account/base.html:52
+#, fuzzy
+#| msgid "Sign Out"
+msgid "Sign out"
+msgstr "Log uit"
+
+#: templates/account/base.html:64
+#, fuzzy
+#| msgid "Sign In"
+msgid "Sign in"
+msgstr "Log in"
+
+#: templates/account/base.html:68
+#, fuzzy
+#| msgid "Sign Out"
+msgid "Sign up"
+msgstr "Log uit"
+
+#: templates/account/login.html:6 templates/account/login.html:11
+#: templates/account/login.html:60
+msgid "Sign In"
+msgstr "Log in"
+
+#: templates/account/login.html:25
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+#: templates/account/login.html:36
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: templates/account/login.html:48
+msgid "Remember me"
+msgstr "Onthou mij"
+
+#: templates/account/login.html:65
+msgid "Forgot password?"
+msgstr "Wachtwoord vergeten?"
+
+#: templates/account/login.html:71
+msgid "or sign in with"
+msgstr "of log in met"
+
+#: templates/account/logout.html:5 templates/account/logout.html:8
+#: templates/account/logout.html:17 templates/base.html:81
+msgid "Sign Out"
+msgstr "Log uit"
+
+#: templates/account/logout.html:10
+msgid "Are you sure you want to sign out?"
+msgstr "Bent u zeker dat u wilt uitloggen?"
+
+#: templates/base.html:42 templates/library/book_detail.html:17
+#, fuzzy
+msgid "Authors"
+msgstr "Auteurs"
+
+#: templates/base.html:46 templates/library/book_detail.html:28
+msgid "Publishers"
+msgstr "Uitgevers"
+
+#: templates/base.html:50
+msgid "Ratings"
+msgstr "Waarderingen"
+
+#: templates/base.html:54 templates/library/results.html:72
+msgid "Series"
+msgstr "Series"
+
+#: templates/base.html:58 templates/library/results.html:43
+#: templates/library/results.html:431
+msgid "Tags"
+msgstr "Tags"
+
+#: templates/base.html:73
+msgid "Advanced search"
+msgstr "Geavanceerd Zoeken"
+
+#: templates/library/author_list.html:21
+#, fuzzy
+#| msgid "no tags in lib"
+msgid "No authors in lib"
+msgstr "Sorry, er zijn geen tags in de bibliotheek"
+
+#: templates/library/book_detail.html:14
+msgid "Metadata of the book"
+msgstr "Metadata van het boek"
+
+#: templates/library/book_detail.html:35
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: templates/library/book_detail.html:41
+msgid "tags"
+msgstr "tags"
+
+#: templates/library/book_detail.html:47 templates/library/book_detail.html:58
+msgid "None"
+msgstr "Geen"
+
+#: templates/library/book_detail.html:52 templates/library/results.html:430
+msgid "Rating"
+msgstr "Waardering"
+
+#: templates/library/book_detail.html:64
+msgid "Description"
+msgstr "Beschrijving"
+
+#: templates/library/book_detail.html:85
+msgid "Downlaod/view book"
+msgstr "Download/zie het boek"
+
+#: templates/library/publisher_list.html:12
+msgid "List of publishers"
+msgstr "Lijst van uitgevers"
+
+#: templates/library/publisher_list.html:22
+#, fuzzy
+#| msgid "no series in lib"
+msgid "No publishers in lib"
+msgstr "Sory, er zijn geen series in de bibliotheek"
+
+#: templates/library/rating_list.html:6
+msgid "List of ratings"
+msgstr "Lijst van waarderingen"
+
+#: templates/library/rating_list.html:16
+#, fuzzy
+#| msgid "no tags in lib"
+msgid "No ratings in lib"
+msgstr "Sorry, er zijn geen tags in de bibliotheek"
+
+#: templates/library/results.html:18
+msgid "Autors"
+msgstr "Auteurs"
+
+#: templates/library/results.html:28 templates/library/results.html:56
+#: templates/library/results.html:85
+msgid "filtertype"
+msgstr "filter type"
+
+#: templates/library/results.html:34 templates/library/results.html:63
+#: templates/library/results.html:93
+msgid "any/or"
+msgstr "elke/of"
+
+#: templates/library/results.html:36 templates/library/results.html:65
+#: templates/library/results.html:95
+msgid "all/and"
+msgstr "alle/en"
+
+#: templates/library/results.html:103 templates/library/results.html:108
+msgid "Language"
+msgstr "Taal"
+
+#: templates/library/results.html:112
+#, fuzzy
+#| msgid "Ratings"
+msgid "MinRating"
+msgstr "Minimale waardering"
+
+#: templates/library/results.html:135
+msgid "Published between"
+msgstr "Gepubliceerd tussen jaar"
+
+#: templates/library/results.html:143
+msgid "and"
+msgstr "en"
+
+#: templates/library/results.html:153
+msgid "Added to Calibre after"
+msgstr "Toegevoegd aan Calibre na"
+
+#: templates/library/results.html:264
+msgid "and before"
+msgstr "en voor jaar"
+
+#: templates/library/results.html:377 templates/library/search.html:8
+msgid "search"
+msgstr "zoeken"
+
+#: templates/library/results.html:407
+msgid "Books"
+msgstr "Boeken"
+
+#: templates/library/results.html:424
+msgid "Table with found books"
+msgstr "Tabel met gevonden boeken"
+
+#: templates/library/results.html:428 templates/library/search.html:6
+msgid "Title"
+msgstr "Titel"
+
+#: templates/library/results.html:429
+msgid "Author"
+msgstr "Auteur"
+
+#: templates/library/results.html:432
+msgid "Added on"
+msgstr "Toegevoegd op"
+
+#: templates/library/results.html:433
+msgid "Published on"
+msgstr "Uitgegeven op"
+
+#: templates/library/series_list.html:6
+msgid "List of series"
+msgstr "Lijst van series"
+
+#: templates/library/series_list.html:16
+msgid "no series in lib"
+msgstr "Sory, er zijn geen series in de bibliotheek"
+
+#: templates/library/tag_list.html:6
+msgid "List of tags"
+msgstr "Lijst van tags"
+
+#: templates/library/tag_list.html:19
+msgid "no tags in lib"
+msgstr "Sorry, er zijn geen tags in de bibliotheek"

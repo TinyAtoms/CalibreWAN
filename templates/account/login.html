@@ -22,7 +22,7 @@
             {% csrf_token %}
             <div class="row">
                 <div class="col">
-                    <label for="id_login" class="loginlabel">Username</label>
+                    <label for="id_login" class="loginlabel">{% trans 'Username' %}</label>
                 </div>
 
                 <div class="col">
@@ -33,7 +33,7 @@
 
             <div class="row">
                 <div class="col">
-                    <label for="id_password" class="loginlabel">Password</label>
+                    <label for="id_password" class="loginlabel">{% trans 'Password' %}</label>
                 </div>
 
                 <div class="col">
@@ -45,7 +45,7 @@
 
             <div class="row">
                 <div class="col">
-                    <label for="id_remember" class="loginlabel">Remember Me:</label>
+                    <label for="id_remember" class="loginlabel">{% trans 'Remember me' %}</label>
                 </div>
 
                 <div class="col">
@@ -62,13 +62,13 @@
 
         <!-- Remind Passowrd -->
         <div id="formFooter">
-            <a class="underlineHover" href="#">Forgot Password?</a>
+            <a class="underlineHover" href="#">{% trans 'Forgot password?' %}</a>
         </div>
         <!-- Social account-->
         {% get_providers as socialaccount_providers %}
         {% if socialaccount_providers %}
         <div id="formFooter">
-            <p>Or sign in with</p>
+            <p>{% trans 'or sign in with' %}</p>
             <div class="socialaccount_ballot">
                 <ul class="socialaccount_providers">
                     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
