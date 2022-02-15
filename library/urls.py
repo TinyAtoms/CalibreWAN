@@ -12,8 +12,8 @@ urlpatterns = [
     path("series-autocomplete/", views.SeriesComplete.as_view(), name="series-autocomplete"),
     path("title-autocomplete/", views.TitleComplete.as_view(), name="title-autocomplete"),
 
-    path("opds/", views.OPDS_feed_view, name="opds"),
-    path('opds2/', feeds.CustomFeed(), name="opds2"),
+    # path("opds/", views.OPDS_feed_view, name="opds"),
+    # path('opds2/', feeds.CustomFeed(), name="opds2"),
 
     path('results/', views.SearchResultsView.as_view(), name='results'),
     path("filter/", views.FilterView.as_view(), name="filter"),

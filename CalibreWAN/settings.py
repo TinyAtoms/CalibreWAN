@@ -42,7 +42,7 @@ DEBUG = env("DEBUG")
 
 #ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 ALLOWED_HOSTS=[ "10.10.1.13", "cwa.eu.aperturect.com"]
-INTERNAL_IPS = ["10.10.1.13"]
+INTERNAL_IPS = ["10.10.1.13", "127.0.0.1"]
 # SHAQUILLE. This was in old cwa
 # ALLOWED_HOSTS = [
 #     "*"
@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.microsoft',
     "library",
+    'api.apps.ApiConfig',
 ]
 
 SITE_ID = 1 # changed from 2
@@ -197,12 +198,14 @@ CSP_STYLE_SRC = ("'self'",
     "cdn.datatables.net",
     "use.fontawesome.com",
     "fonts.googleapis.com",
+    "cdn.jsdelivr.net"
     )
   
 # scripts from our domain and other domains
 CSP_SCRIPT_SRC = ("'self'",
     "cdnjs.cloudflare.com",
-    "cdn.datatables.net"
+    "cdn.datatables.net",
+    "cdn.jsdelivr.net",
     )
 
 CSP_IMG_SRC = ("'self'",

@@ -75,11 +75,16 @@
         integrity="sha512-uVSVjE7zYsGz4ag0HEzfugJ78oHCI1KhdkivjQro8ABL/PRiEO4ROwvrolYAcZnky0Fl/baWKYilQfWvESliRA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+        {% if downloads %}
+    {% for download in downloads %}
     <figure>
-        <a href=" /UserLibrary/{{ download }}"><img src=" /UserLibrary/{{ imgpath }}"
+        <a href=" /UserLibrary/{{ download.url }}"><img src=" /UserLibrary/{{ imgpath }}"
                 alt="book cover. Click on it to download" srcset=""
-                class="shadow-3 z-depth-5 justify-content-md-center"></a>
-        <figcaption>Download/view book</figcaption>
+                class="shadow-3 z-depth-5 justify-content-md-center w-50"></a>
+        <figcaption>Download/view book ({{download.format}})</figcaption>
     </figure>
+    {% endfor %}
+    {% else %}
+    {% endif %}
 </div>
 {% endblock %}

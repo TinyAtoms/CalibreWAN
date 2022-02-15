@@ -36,7 +36,7 @@ def OPDS_feed_view(request):
     return HttpResponse(template.render(context, request), content_type="text/xml")
 
 
-class BookDetailView(generic.DetailView):
+class BookDetailView(LoginRequiredMixin, generic.DetailView):
     """
     A book detail view, intended to display info about a specific book
     """
@@ -49,14 +49,19 @@ class BookDetailView(generic.DetailView):
         # Call the base implementation first to get the context
         context = super(BookDetailView, self).get_context_data(**kwargs)
         # Create any data and add it to the context
+        book = context["object"]
         try:
-            context['comment'] = Comment.objects.get(
-                book=context["object"].id).text
+            context['comment'] = Comment.objects.get(book=book.id).text
         except Comment.DoesNotExist:
             pass
-        context["imgpath"] = context["object"].path + "/cover.jpg"
-        download = Data.objects.get(book=context["object"].id)
-        context["download"] = f"{context['object'].path}/{download.name}.{download.format.lower()}"
+        context["imgpath"] =  book.path + "/cover.jpg"
+        formats = Data.objects.filter(book=book.id)
+        context["downloads"] = []
+        for f in formats:
+            context["downloads"].append({
+                "url" :  f"{book.path}/{f.name}.{f.format.lower()}",
+                "format" : f.format.lower()
+            })
         return context
 
 

@@ -21,6 +21,7 @@ import debug_toolbar
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('library.urls')),
+    path('apiv1/', include('api.urls')),
     path("accounts/", include('allauth.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
 ]
