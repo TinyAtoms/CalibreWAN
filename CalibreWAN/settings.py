@@ -42,7 +42,7 @@ DEBUG = env("DEBUG")
 
 #ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 ALLOWED_HOSTS=[ "10.10.1.13", "cwa.eu.aperturect.com"]
-INTERNAL_IPS = ["10.10.1.13", "127.0.0.1"]
+INTERNAL_IPS = ["10.10.1.13"]
 # SHAQUILLE. This was in old cwa
 # ALLOWED_HOSTS = [
 #     "*"
