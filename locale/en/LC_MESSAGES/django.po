@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-15 21:02+0000\n"
+"POT-Creation-Date: 2022-02-22 10:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,9 +137,11 @@ msgstr "Rating"
 msgid "Description"
 msgstr "Description"
 
-#: templates/library/book_detail.html:85
-msgid "Downlaod/view book"
-msgstr "Download/view book"
+#: templates/library/book_detail.html:86
+#, fuzzy
+#| msgid "Downlaod/view book"
+msgid "Download book"
+msgstr "Download book"
 
 #: templates/library/publisher_list.html:12
 #, fuzzy
@@ -175,12 +177,12 @@ msgstr "filter type"
 #: templates/library/results.html:34 templates/library/results.html:63
 #: templates/library/results.html:93
 msgid "any/or"
-msgstr "any/or"
+msgstr "or"
 
 #: templates/library/results.html:36 templates/library/results.html:65
 #: templates/library/results.html:95
 msgid "all/and"
-msgstr "all/and"
+msgstr "and"
 
 #: templates/library/results.html:103 templates/library/results.html:108
 msgid "Language"

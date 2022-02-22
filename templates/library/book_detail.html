@@ -82,8 +82,9 @@
         <a href=" /UserLibrary/{{ download.url }}"><img src=" /UserLibrary/{{ imgpath }}"
                 alt="book cover. Click on it to download" srcset=""
                 class="shadow-3 z-depth-5 justify-content-md-center w-50"></a>
-        <figcaption>{% trans 'Downlaod/view book' %} ({{download.format}})</figcaption>
+        <figcaption>{% trans 'Download book' %} ({{download.format}})</figcaption>
     </figure>
+    <a href="{{download.reverser.get_absolute_url}}"> read book online</a>
     {% endfor %}
     {% else %}
     {% endif %}

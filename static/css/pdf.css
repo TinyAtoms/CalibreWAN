@@ -1,0 +1,6 @@
+#pdf {
+    border: 1px solid black;
+    direction: ltr;
+    height: 90vh;
+    max-height: 90vh;
+  }

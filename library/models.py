@@ -62,6 +62,11 @@ class Data(models.Model):
             models.Index(fields=["book"], name="data_idx"),
         ]
 
+        
+    def get_absolute_url(self):
+        """Returns the url to access a particular instance of MyModelName."""
+        return reverse('data-detail-view', args=[str(self.id)])
+
 
 class Identifier(models.Model):
     book = models.ForeignKey("Book", db_column="book", on_delete=models.CASCADE)

@@ -60,8 +60,31 @@ class BookDetailView(LoginRequiredMixin, generic.DetailView):
         for f in formats:
             context["downloads"].append({
                 "url" :  f"{book.path}/{f.name}.{f.format.lower()}",
-                "format" : f.format.lower()
+                "format" : f.format.lower(),
+                "id" : f.id,
+                "reverser" : f
             })
+        return context
+
+
+class DataDetailView(LoginRequiredMixin, generic.DetailView):
+    """
+    A book detail view, intended to display js readers for specific formats
+    """
+    model = Data
+
+    def dispatch(self, *args, **kwargs):
+        return super(DataDetailView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get the context
+        context = super().get_context_data(**kwargs)
+        # Create any data and add it to the context
+        book = context["object"].book
+        data = context["object"]
+        context["format"] = data.format.lower()
+        context["url"] =  f"{book.path}/{data.name}.{data.format.lower()}"
+        context["id"] = data.id
         return context
 
 
@@ -267,11 +290,12 @@ class SearchResultsView(LoginRequiredMixin, generic.ListView):
                 author_id = -1
             else:
                 author_id = author_obj.id
+            identifier = generic_query.replace("-", "")
             books = books.filter(
                 Q(sort__icontains=generic_query) |
                 Q(author_sort__icontains=generic_query) |
                 Q(authors__id=author_id) |
-                Q(identifier__val=generic_query)
+                Q(identifier__val=identifier)
             ).distinct()
         return books
 

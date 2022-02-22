@@ -24,6 +24,7 @@ urlpatterns = [
     path("publisher/<int:publishers>", views.FilterView.as_view(), name="publisher-detail-view"),
     path("rating/<int:ratings__rating>", views.FilterView.as_view(), name="rating-detail-view"),
     path('book/<int:pk>', views.BookDetailView.as_view(), name='book-detail-view'),
+    path('read/<int:pk>', views.DataDetailView.as_view(), name='data-detail-view'),
 
     # to be moved to another thing
     path('authors/', views.AuthorListView.as_view(), name='authors'),

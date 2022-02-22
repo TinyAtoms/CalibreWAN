@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-15 21:02+0000\n"
+"POT-Creation-Date: 2022-02-22 10:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,23 +31,15 @@ msgid "change email"
 msgstr "Verander e-mail"
 
 #: templates/account/base.html:52
-#, fuzzy
-#| msgid "Sign Out"
 msgid "Sign out"
 msgstr "Log uit"
 
-#: templates/account/base.html:64
-#, fuzzy
-#| msgid "Sign In"
-msgid "Sign in"
-msgstr "Log in"
 
 #: templates/account/base.html:68
-#, fuzzy
-#| msgid "Sign Out"
 msgid "Sign up"
-msgstr "Log uit"
+msgstr "Registreer"
 
+#: templates/account/base.html:64
 #: templates/account/login.html:6 templates/account/login.html:11
 #: templates/account/login.html:60
 msgid "Sign In"
@@ -83,7 +75,6 @@ msgid "Are you sure you want to sign out?"
 msgstr "Bent u zeker dat u wilt uitloggen?"
 
 #: templates/base.html:42 templates/library/book_detail.html:17
-#, fuzzy
 msgid "Authors"
 msgstr "Auteurs"
 
@@ -109,8 +100,6 @@ msgid "Advanced search"
 msgstr "Geavanceerd Zoeken"
 
 #: templates/library/author_list.html:21
-#, fuzzy
-#| msgid "no tags in lib"
 msgid "No authors in lib"
 msgstr "Sorry, er zijn geen tags in de bibliotheek"
 
@@ -138,17 +127,15 @@ msgstr "Waardering"
 msgid "Description"
 msgstr "Beschrijving"
 
-#: templates/library/book_detail.html:85
-msgid "Downlaod/view book"
-msgstr "Download/zie het boek"
+#: templates/library/book_detail.html:86
+msgid "Download book"
+msgstr "Download het boek"
 
 #: templates/library/publisher_list.html:12
 msgid "List of publishers"
 msgstr "Lijst van uitgevers"
 
 #: templates/library/publisher_list.html:22
-#, fuzzy
-#| msgid "no series in lib"
 msgid "No publishers in lib"
 msgstr "Sory, er zijn geen series in de bibliotheek"
 
@@ -157,8 +144,6 @@ msgid "List of ratings"
 msgstr "Lijst van waarderingen"
 
 #: templates/library/rating_list.html:16
-#, fuzzy
-#| msgid "no tags in lib"
 msgid "No ratings in lib"
 msgstr "Sorry, er zijn geen tags in de bibliotheek"
 
@@ -174,20 +159,18 @@ msgstr "filter type"
 #: templates/library/results.html:34 templates/library/results.html:63
 #: templates/library/results.html:93
 msgid "any/or"
-msgstr "elke/of"
+msgstr "of"
 
 #: templates/library/results.html:36 templates/library/results.html:65
 #: templates/library/results.html:95
 msgid "all/and"
-msgstr "alle/en"
+msgstr "en"
 
 #: templates/library/results.html:103 templates/library/results.html:108
 msgid "Language"
 msgstr "Taal"
 
 #: templates/library/results.html:112
-#, fuzzy
-#| msgid "Ratings"
 msgid "MinRating"
 msgstr "Minimale waardering"
 
