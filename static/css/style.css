@@ -53,3 +53,26 @@ p.count {
     padding: 0.5em;
 
 }
+
+figure figcaption {
+    background-color: #222;
+    color: #fff;
+    font: italic smaller sans-serif;
+    padding: 3px;
+    text-align: center;
+    width: 100%;
+}
+
+figure.w-50 a img {
+    width: 100%;
+}
+
+
+.table-caption {
+    caption-side: top;
+    background-color: #222;
+    color: #fff;
+    font: italic smaller sans-serif;
+    padding: 3px;
+    text-align: center;
+}

@@ -25,7 +25,7 @@ function renderPage(num) {
     // canvas.width = viewport.width;
 
      // Set dimensions to Canvas
-     var resolution =  0.5; // for example
+     var resolution =  2; // for example
      canvas.height = resolution*viewport.height; //actual size
      canvas.width = resolution*viewport.width;
 
