@@ -10,19 +10,25 @@ p.count {
 
 
 
-/* stefan, this is my tag style */
 .tags a {
     color: #000000;
     background-color: #43A047;
     font-size: 1em;
     white-space: nowrap;
-    border-radius: 2rem;
+    border-radius: 1.5rem;
     padding:  .25rem .85rem .25rem;
     line-height: 2;
-    margin: .2rem;
-    text-decoration: none;
-}
+    flex-shrink: 3;
+    flex: flex-basis;
 
+}
+.tags {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0.5em 0.25em;
+    align-content: space-around;
+
+}
 .authors a {
     color: #000000;
     background-color: #43A047;
@@ -31,19 +37,34 @@ p.count {
     border-radius: 2rem;
     padding: .25rem .85rem .25rem;
     line-height: 2;
-    margin: 0.2rem;
-    text-decoration: none;
+    flex: "flex-basis";
 }
-
-.tags {
-    display: flex;
-    flex-flow: row wrap;
-
-}
-
 .authors {
     display: flex;
     flex-flow: row wrap;
+    gap: 0.5em 0.25em;
+    box-sizing: border-box;
+    align-content: space-around;
+}
+
+@media screen and (max-width: 1000px) {
+    table#books thead {
+      display: none;
+    }  table#books td {
+      display: flex;
+    }
+    table#books td::before {
+      content: attr(label);
+      font-weight: bold;
+      width: 120px;
+      min-width: 120px;
+    }
+  }
+
+.paginate_button {
+    color: gray;
+    border: gray 1px solid;
+    padding: 0.5em;
 
 }
 
@@ -75,4 +96,79 @@ figure.w-50 a img {
     font: italic smaller sans-serif;
     padding: 3px;
     text-align: center;
+}
+
+.book-format-container {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+    margin: 2%;
+}
+
+.cover-img {
+    width: 100%;
+    display: block;
+    height: auto;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+}
+
+.alt-triangle {
+    z-index: 3;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 20%;
+}
+
+.format-overlay {
+    font-family: 'Source Sans Pro', sans-serif;
+    width: 15%;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    z-index: 10;
+    text-transform: uppercase;
+
+}
+
+.format-overlay p {
+    color: #000;
+    font-weight: 400;
+    font-size: 1.5rem;
+    padding: 0 20px 20px;
+    text-decoration: none
+}
+
+.download {
+    width: 25%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-101%, -50%);
+    padding: 1em;
+    border: 1px solid black;
+    color: #fff;
+    background-color: black;
+}
+
+.read {
+    width: 25%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(1%, -50%);
+    padding: 1em;
+    background-color: black;
+    border: 1px solid black;
+    color: #fff;
+}
+.read:hover, .download:hover {
+    background-color: #43A047 ;
+}
+
+.book-format-container  a div {
+    color: white;
 }

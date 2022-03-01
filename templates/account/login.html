@@ -2,64 +2,50 @@
 
 {% load i18n %}
 {% load account socialaccount %}
-
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
-
 {% block content %}
-
-
 <h1>{% trans "Sign In" %}</h1>
-
-
 {% include "socialaccount/snippets/login_extra.html" %}
 
 <div class="wrapper fadeInDown">
     <div id="formContent">
         <!-- Tabs Titles -->
-
         <!-- Login Form -->
         <form class="login" method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
             <div class="row">
-                <div class="col">
-                    <label for="id_login" class="loginlabel">{% trans 'Username' %}</label>
+                <div class="col-25">
+                    <label for="id_login">{% trans 'Username' %}</label>
                 </div>
-
-                <div class="col">
-                    <input type="text" id="id_login" class="fadeIn second" name="login" placeholder="Username"
+                <div class="col-75">
+                    <input type="text" id="id_login" name="login" placeholder="{% trans 'Username' %}"
                         autocomplete="username" maxlength="150" required="">
                 </div>
             </div>
-
             <div class="row">
-                <div class="col">
-                    <label for="id_password" class="loginlabel">{% trans 'Password' %}</label>
+                <div class="col-25">
+                    <label for="id_password">{% trans 'Password' %}</label>
                 </div>
-
-                <div class="col">
-                    <input type="password" id="id_password" class="fadeIn third" type="password" name="password"
-                        placeholder="Password" autocomplete="current-password" required="">
+                <div class="col-75">
+                    <input type="password" id="id_password" name="password" placeholder="{% trans 'Password' %}"
+                        autocomplete="current-password" required="">
                 </div>
             </div>
-
-
             <div class="row">
-                <div class="col">
-                    <label for="id_remember" class="loginlabel">{% trans 'Remember me' %}</label>
+                <div class="col-25">
+                    <label for="id_remember">{% trans 'Remember me' %}</label>
                 </div>
-
-                <div class="col">
+                <div class="col-75">
                     <input type="checkbox" name="remember" id="id_remember">
                 </div>
             </div>
-
-
-            {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-            {% endif %}
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{% trans "Sign In" %}</button>
+            <div class="row" id="submit-row">
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button class="btn btn-outline-success " type="submit">{% trans "Sign In" %}</button>
+            </div>
         </form>
-
         <!-- Remind Passowrd -->
         <div id="formFooter">
             <a class="underlineHover" href="#">{% trans 'Forgot password?' %}</a>
@@ -73,7 +59,7 @@
                 <ul class="socialaccount_providers">
                     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
                 </ul>
-            </div>         
+            </div>
         </div>
         {% else %}
         {% endif %}

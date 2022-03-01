@@ -420,7 +420,7 @@
 
 
 <div class="container-fluid">
-        <table id="books" class="table table-hover table-striped table-responsive table-bordered">
+        <table id="books" class="table table-hover table-striped table-responsive-lg table-bordered">
             <caption class="table-caption">{% trans 'Table with found books' %}</caption>
             <thead class="thead-dark">
                 <tr>
@@ -428,35 +428,32 @@
                     <th scope="col" class="title" >{% trans 'Title' %}</th>
                     <th scope="col" class="author" >{% trans 'Author' %}</th>
                     <th scope="col" class="rating" >{% trans 'Rating' %}</th>
-                    <th scope="col" class="tags" >{% trans 'Tags' %}</th>
+                    <th scope="col" class="tags-col" >{% trans 'Tags' %}</th>
                     <th scope="col" class="added" >{% trans 'Added on' %}</th>
                     <th scope="col" class="published">{% trans 'Published on' %}</th>
                 </tr>
             </thead>
-    
             <tbody>
                 {% for book in book_list %}
                 <tr>
                     <th scope="row"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></th>
-                    <td class="authors">
+                    <td class="authors" label="{% trans 'Authors' %}">
                         {% for author in book.authors.all %}
                         <a href="{{ author.get_absolute_url }}" rel="author">{{ author }}</a>
                         {% endfor %}
-    
                     </td>
-                    <td>
+                    <td label="{% trans 'Rating' %}">
                         {% for rating in book.ratings.all %}
                         <a href="{{ rating.get_absolute_url }}" rel="rating">{{ rating }}</a>
                         {% endfor %}
                     </td>
-                    <td class="tags">
-                        <!-- stefan  -->
+                    <td class="tags" label="{% trans 'Tags' %}">
                         {% for tag in book.tags.all %}
                         <a href="{{ tag.get_absolute_url }}" rel="tag">{{ tag }}</a>
                         {% endfor %}
                     </td>
-                    <td>{{ book.timestamp | date:"d/m/Y" }}</td>
-                    <td>{{ book.pubdate.year }}</td>
+                    <td label="{% trans 'Added on' %}">{{ book.timestamp | date:"d/m/Y" }}</td>
+                    <td label="{% trans 'Published on' %}">{{ book.pubdate.year }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

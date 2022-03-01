@@ -239,6 +239,7 @@ CSP_INCLUDE_NONCE_IN = ('script-src', )
 CSP_MANIFEST_SRC = ("'self'", )
 CSP_WORKER_SRC = ("'self'", )
 CSP_MEDIA_SRC = ("'self'", )
+CSP_FORM_ACTION = ("'self'", "github.com", "accounts.google.com")
 CSP_INCLUDE_NONCE_IN=['script-src']
 
 SESSION_COOKIE_SECURE = True
