@@ -1,6 +1,10 @@
 APPDIR="/CWA"
 USER_DIR="/CWA/UserLibrary"
 PERSISTENT="/CWA/Persistent"
+DJANGO_SUPERUSER_PASSWORD="aVeryStrongPassword,this-is-not"
+DJANGO_SUPERUSER_USERNAME="superuser_first_login"
+DJANGO_SUPERUSER_EMAIL="thishasnoeffect@whatsoever.com"
+
 if [ ! -d "$USER_DIR" ]; then
   echo "Calibre Library not mounted at the correct location."
   echo "Mount it at /CWA/UserLibrary/"
@@ -17,9 +21,14 @@ if [ ! -d "$PERSISTENT" ]; then
 fi
 
 #cp -R -u -p "/CWA/Persistent/db.sqlite3" "/CWA/Persistent/"
-ls -l /CWA
+# ls -l /CWA
 # RUN chmod a+rw /CWA /CWA/*
 chown -R unit:unit /CWA
 python "${APPDIR}/manage.py" makemigrations
 python "${APPDIR}/manage.py" migrate
-ls -l /CWA/static
+
+{ # try
+    python "${APPDIR}/manage.py" createsuperuser --noinput --username=$DJANGO_SUPERUSER_USERNAME &&
+} || { # catch
+   echo "superuser already exists"
+}
