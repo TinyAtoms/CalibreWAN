@@ -48,6 +48,7 @@ A self hosted server to host your Calibre library online.
 4. Set the IP and/or url where CalibreWAN will be accessible from, seperated by commas if you will have multiple. For example: `ALLOWED_HOSTS="10.10.1.16,cwan.mydomain.com"`
 5. Change the  volume mounts in the docker-compose file to reflect your environment. `"/path/to/your/calibre/library:/CWA/UserLibrary"` and `"/path/to/somewhere/to/store/persistent/data/for/CWA:/CWA/Persistent"`
 6. set the port you want to expose CalibreWAN at. The default is port 8000
+7. Build the container with docker compose and host it
 7. (optional) configure your reverse proxy
 
 # First login
