@@ -11,43 +11,24 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+import sys
 # section to use .env to seperate sensitive settings in a seperate file that shouldn't go in git
-import environ
-from django.contrib.auth import validators
 from django.utils.translation import ugettext_lazy as _
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False),
-    ALLOWED_HOSTS=(list, [])
-)
-# reading .env file
-environ.Env.read_env()
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
-# Point to custom account adapter.
+
+SECRET_KEY = os.environ['SECRET_KEY']
+DEBUG = bool(int(os.environ["DEBUG"]))
+ACCOUNT_ALLOW_SIGNUPS= bool(int(os.environ["ACCOUNT_ALLOW_SIGNUPS"]))
+ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(",")
+# INTERNAL_IPS = ["10.10.1.13"]
+
+
 ACCOUNT_ADAPTER = 'CalibreWAN.adapter.CustomAccountAdapter'
-ACCOUNT_ALLOW_SIGNUPS= env("ACCOUNT_ALLOW_SIGNUPS")
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
-
-#ALLOWED_HOSTS = env("ALLOWED_HOSTS")
-ALLOWED_HOSTS=[ "10.10.1.13", "cwa.eu.aperturect.com"]
-INTERNAL_IPS = ["10.10.1.13"]
-# SHAQUILLE. This was in old cwa
-# ALLOWED_HOSTS = [
-#     "*"
-# ]
-
 
 # Application definition
 

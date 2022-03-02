@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-22 10:24+0000\n"
+"POT-Creation-Date: 2022-03-02 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: CalibreWAN/settings.py:183
+#: CalibreWAN/settings.py:164
 msgid "English"
 msgstr "English"
 
-#: CalibreWAN/settings.py:184
+#: CalibreWAN/settings.py:165
 msgid "Dutch"
 msgstr "Dutch"
 
@@ -48,33 +48,33 @@ msgstr "Sign in"
 msgid "Sign up"
 msgstr "Sign Out"
 
-#: templates/account/login.html:6 templates/account/login.html:11
-#: templates/account/login.html:60
+#: templates/account/login.html:5 templates/account/login.html:7
+#: templates/account/login.html:46
 msgid "Sign In"
 msgstr "Sign in"
 
-#: templates/account/login.html:25
+#: templates/account/login.html:18 templates/account/login.html:21
 msgid "Username"
 msgstr "Username"
 
-#: templates/account/login.html:36
+#: templates/account/login.html:27 templates/account/login.html:30
 msgid "Password"
 msgstr "Password"
 
-#: templates/account/login.html:48
+#: templates/account/login.html:36
 msgid "Remember me"
 msgstr "Remember me"
 
-#: templates/account/login.html:65
+#: templates/account/login.html:51
 msgid "Forgot password?"
 msgstr "Forgot password?"
 
-#: templates/account/login.html:71
+#: templates/account/login.html:57
 msgid "or sign in with"
 msgstr "or sign in with"
 
 #: templates/account/logout.html:5 templates/account/logout.html:8
-#: templates/account/logout.html:17 templates/base.html:81
+#: templates/account/logout.html:17 templates/base.html:75
 msgid "Sign Out"
 msgstr "Sign Out"
 
@@ -82,36 +82,32 @@ msgstr "Sign Out"
 msgid "Are you sure you want to sign out?"
 msgstr "Are you sure you want to sign out?"
 
-#: templates/base.html:42 templates/library/book_detail.html:17
+#: templates/base.html:43 templates/library/book_detail.html:17
+#: templates/library/book_list.html:38 templates/library/results.html:438
 msgid "Authors"
 msgstr "Authors"
 
-#: templates/base.html:46 templates/library/book_detail.html:28
+#: templates/base.html:47 templates/library/book_detail.html:28
 msgid "Publishers"
 msgstr "Publishers"
 
-#: templates/base.html:50
+#: templates/base.html:51
 msgid "Ratings"
 msgstr "Ratings"
 
-#: templates/base.html:54 templates/library/results.html:72
+#: templates/base.html:55 templates/library/results.html:71
 msgid "Series"
 msgstr "Series"
 
-#: templates/base.html:58 templates/library/results.html:43
-#: templates/library/results.html:431
+#: templates/base.html:59 templates/library/book_list.html:48
+#: templates/library/results.html:42 templates/library/results.html:429
+#: templates/library/results.html:448
 msgid "Tags"
 msgstr "Tags"
 
-#: templates/base.html:73
-msgid "Advanced search"
-msgstr "Advanced search"
-
 #: templates/library/author_list.html:21
-#, fuzzy
-#| msgid "no tags in lib"
 msgid "No authors in lib"
-msgstr "Sorry, no tags found in the library."
+msgstr "Sorry, no authors found in the library."
 
 #: templates/library/book_detail.html:14
 msgid "Metadata of the book"
@@ -129,7 +125,8 @@ msgstr "tags"
 msgid "None"
 msgstr "None"
 
-#: templates/library/book_detail.html:52 templates/library/results.html:430
+#: templates/library/book_detail.html:52 templates/library/book_list.html:43
+#: templates/library/results.html:428 templates/library/results.html:443
 msgid "Rating"
 msgstr "Rating"
 
@@ -137,104 +134,87 @@ msgstr "Rating"
 msgid "Description"
 msgstr "Description"
 
-#: templates/library/book_detail.html:86
-#, fuzzy
-#| msgid "Downlaod/view book"
-msgid "Download book"
-msgstr "Download book"
+#: templates/library/book_list.html:53 templates/library/results.html:430
+#: templates/library/results.html:453
+msgid "Added on"
+msgstr "Added on"
+
+#: templates/library/book_list.html:54 templates/library/results.html:431
+#: templates/library/results.html:454
+msgid "Published on"
+msgstr "Published on"
 
 #: templates/library/publisher_list.html:12
-#, fuzzy
-#| msgid "Publishers"
 msgid "List of publishers"
 msgstr "Publishers"
 
 #: templates/library/publisher_list.html:22
-#, fuzzy
-#| msgid "no series in lib"
 msgid "No publishers in lib"
-msgstr "Sorry, no series found in the library."
+msgstr "Sorry, no publishers found in the library."
 
 #: templates/library/rating_list.html:6
 msgid "List of ratings"
 msgstr "List of ratings"
 
 #: templates/library/rating_list.html:16
-#, fuzzy
-#| msgid "no tags in lib"
 msgid "No ratings in lib"
-msgstr "Sorry, no tags found in the library."
+msgstr "Sorry, no ratings found in the library."
 
-#: templates/library/results.html:18
+#: templates/library/results.html:19
 msgid "Autors"
 msgstr "Authors"
 
 #: templates/library/results.html:28 templates/library/results.html:56
 #: templates/library/results.html:85
 msgid "filtertype"
-msgstr "filter type"
+msgstr "Filter type"
 
-#: templates/library/results.html:34 templates/library/results.html:63
+#: templates/library/results.html:33 templates/library/results.html:63
 #: templates/library/results.html:93
-msgid "any/or"
-msgstr "or"
+msgid "or"
+msgstr "Or"
 
-#: templates/library/results.html:36 templates/library/results.html:65
-#: templates/library/results.html:95
-msgid "all/and"
-msgstr "and"
+#: templates/library/results.html:35 templates/library/results.html:65
+#: templates/library/results.html:95 templates/library/results.html:141
+#: templates/library/results.html:258
+msgid "and"
+msgstr "And"
 
-#: templates/library/results.html:103 templates/library/results.html:108
+#: templates/library/results.html:101 templates/library/results.html:106
 msgid "Language"
 msgstr "Language"
 
-#: templates/library/results.html:112
+#: templates/library/results.html:111
 msgid "MinRating"
 msgstr "Minimum rating"
 
-#: templates/library/results.html:135
+#: templates/library/results.html:134
 msgid "Published between"
 msgstr "Published between"
 
-#: templates/library/results.html:143
-msgid "and"
-msgstr "and"
+#: templates/library/results.html:150
+msgid "Added to Calibre between"
+msgstr "Added to Calibre between"
 
-#: templates/library/results.html:153
-msgid "Added to Calibre after"
-msgstr "Added to Calibre after"
-
-#: templates/library/results.html:264
-msgid "and before"
-msgstr "and before"
-
-#: templates/library/results.html:377 templates/library/search.html:8
+#: templates/library/results.html:375 templates/library/search.html:8
 msgid "search"
 msgstr "search"
 
-#: templates/library/results.html:407
+#: templates/library/results.html:405
 msgid "Books"
 msgstr "Books"
 
-#: templates/library/results.html:424
+#: templates/library/results.html:422
 msgid "Table with found books"
 msgstr "Table with found books"
 
-#: templates/library/results.html:428 templates/library/search.html:6
+#: templates/library/results.html:426 templates/library/search.html:6
 msgid "Title"
 msgstr "Title"
 
-#: templates/library/results.html:429
+#: templates/library/results.html:427
 msgid "Author"
 msgstr "Author"
-
-#: templates/library/results.html:432
-msgid "Added on"
-msgstr "Added on"
-
-#: templates/library/results.html:433
-msgid "Published on"
-msgstr "Published on"
 
 #: templates/library/series_list.html:6
 msgid "List of series"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-22 10:24+0000\n"
+"POT-Creation-Date: 2022-03-02 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: CalibreWAN/settings.py:183
+#: CalibreWAN/settings.py:164
 msgid "English"
 msgstr "Engels"
 
-#: CalibreWAN/settings.py:184
+#: CalibreWAN/settings.py:165
 msgid "Dutch"
 msgstr "Nederlands"
 
@@ -34,39 +34,41 @@ msgstr "Verander e-mail"
 msgid "Sign out"
 msgstr "Log uit"
 
+#: templates/account/base.html:64
+msgid "Sign in"
+msgstr "Log in"
 
 #: templates/account/base.html:68
 msgid "Sign up"
 msgstr "Registreer"
 
-#: templates/account/base.html:64
-#: templates/account/login.html:6 templates/account/login.html:11
-#: templates/account/login.html:60
+#: templates/account/login.html:5 templates/account/login.html:7
+#: templates/account/login.html:46
 msgid "Sign In"
 msgstr "Log in"
 
-#: templates/account/login.html:25
+#: templates/account/login.html:18 templates/account/login.html:21
 msgid "Username"
 msgstr "Gebruikersnaam"
 
-#: templates/account/login.html:36
+#: templates/account/login.html:27 templates/account/login.html:30
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: templates/account/login.html:48
+#: templates/account/login.html:36
 msgid "Remember me"
 msgstr "Onthou mij"
 
-#: templates/account/login.html:65
+#: templates/account/login.html:51
 msgid "Forgot password?"
 msgstr "Wachtwoord vergeten?"
 
-#: templates/account/login.html:71
+#: templates/account/login.html:57
 msgid "or sign in with"
 msgstr "of log in met"
 
 #: templates/account/logout.html:5 templates/account/logout.html:8
-#: templates/account/logout.html:17 templates/base.html:81
+#: templates/account/logout.html:17 templates/base.html:75
 msgid "Sign Out"
 msgstr "Log uit"
 
@@ -74,34 +76,32 @@ msgstr "Log uit"
 msgid "Are you sure you want to sign out?"
 msgstr "Bent u zeker dat u wilt uitloggen?"
 
-#: templates/base.html:42 templates/library/book_detail.html:17
+#: templates/base.html:43 templates/library/book_detail.html:17
+#: templates/library/book_list.html:38 templates/library/results.html:438
 msgid "Authors"
 msgstr "Auteurs"
 
-#: templates/base.html:46 templates/library/book_detail.html:28
+#: templates/base.html:47 templates/library/book_detail.html:28
 msgid "Publishers"
 msgstr "Uitgevers"
 
-#: templates/base.html:50
+#: templates/base.html:51
 msgid "Ratings"
 msgstr "Waarderingen"
 
-#: templates/base.html:54 templates/library/results.html:72
+#: templates/base.html:55 templates/library/results.html:71
 msgid "Series"
 msgstr "Series"
 
-#: templates/base.html:58 templates/library/results.html:43
-#: templates/library/results.html:431
+#: templates/base.html:59 templates/library/book_list.html:48
+#: templates/library/results.html:42 templates/library/results.html:429
+#: templates/library/results.html:448
 msgid "Tags"
 msgstr "Tags"
 
-#: templates/base.html:73
-msgid "Advanced search"
-msgstr "Geavanceerd Zoeken"
-
 #: templates/library/author_list.html:21
 msgid "No authors in lib"
-msgstr "Sorry, er zijn geen tags in de bibliotheek"
+msgstr "Sorry, er zijn geen auteurs in de bibliotheek"
 
 #: templates/library/book_detail.html:14
 msgid "Metadata of the book"
@@ -119,7 +119,8 @@ msgstr "tags"
 msgid "None"
 msgstr "Geen"
 
-#: templates/library/book_detail.html:52 templates/library/results.html:430
+#: templates/library/book_detail.html:52 templates/library/book_list.html:43
+#: templates/library/results.html:428 templates/library/results.html:443
 msgid "Rating"
 msgstr "Waardering"
 
@@ -127,9 +128,15 @@ msgstr "Waardering"
 msgid "Description"
 msgstr "Beschrijving"
 
-#: templates/library/book_detail.html:86
-msgid "Download book"
-msgstr "Download het boek"
+#: templates/library/book_list.html:53 templates/library/results.html:430
+#: templates/library/results.html:453
+msgid "Added on"
+msgstr "Toegevoegd op"
+
+#: templates/library/book_list.html:54 templates/library/results.html:431
+#: templates/library/results.html:454
+msgid "Published on"
+msgstr "Uitgegeven op"
 
 #: templates/library/publisher_list.html:12
 msgid "List of publishers"
@@ -137,7 +144,7 @@ msgstr "Lijst van uitgevers"
 
 #: templates/library/publisher_list.html:22
 msgid "No publishers in lib"
-msgstr "Sory, er zijn geen series in de bibliotheek"
+msgstr "Sory, er zijn geen publishers in de bibliotheek"
 
 #: templates/library/rating_list.html:6
 msgid "List of ratings"
@@ -145,78 +152,65 @@ msgstr "Lijst van waarderingen"
 
 #: templates/library/rating_list.html:16
 msgid "No ratings in lib"
-msgstr "Sorry, er zijn geen tags in de bibliotheek"
+msgstr "Sorry, er zijn geen waarderingen in de bibliotheek"
 
-#: templates/library/results.html:18
+#: templates/library/results.html:19
 msgid "Autors"
 msgstr "Auteurs"
 
 #: templates/library/results.html:28 templates/library/results.html:56
 #: templates/library/results.html:85
 msgid "filtertype"
-msgstr "filter type"
+msgstr "Filter type"
 
-#: templates/library/results.html:34 templates/library/results.html:63
+#: templates/library/results.html:33 templates/library/results.html:63
 #: templates/library/results.html:93
-msgid "any/or"
+msgid "or"
 msgstr "of"
 
-#: templates/library/results.html:36 templates/library/results.html:65
-#: templates/library/results.html:95
-msgid "all/and"
-msgstr "en"
-
-#: templates/library/results.html:103 templates/library/results.html:108
-msgid "Language"
-msgstr "Taal"
-
-#: templates/library/results.html:112
-msgid "MinRating"
-msgstr "Minimale waardering"
-
-#: templates/library/results.html:135
-msgid "Published between"
-msgstr "Gepubliceerd tussen jaar"
-
-#: templates/library/results.html:143
+#: templates/library/results.html:35 templates/library/results.html:65
+#: templates/library/results.html:95 templates/library/results.html:141
+#: templates/library/results.html:258
 msgid "and"
 msgstr "en"
 
-#: templates/library/results.html:153
-msgid "Added to Calibre after"
-msgstr "Toegevoegd aan Calibre na"
+#: templates/library/results.html:101 templates/library/results.html:106
+msgid "Language"
+msgstr "Taal"
 
-#: templates/library/results.html:264
-msgid "and before"
-msgstr "en voor jaar"
+#: templates/library/results.html:111
+msgid "MinRating"
+msgstr "Minimale waardering"
 
-#: templates/library/results.html:377 templates/library/search.html:8
+#: templates/library/results.html:134
+msgid "Published between"
+msgstr "Gepubliceerd tussen jaar"
+
+#: templates/library/results.html:150
+#, fuzzy
+#| msgid "Added to Calibre after"
+msgid "Added to Calibre between"
+msgstr "Toegevoegd aan Calibre tussen"
+
+#: templates/library/results.html:375 templates/library/search.html:8
 msgid "search"
 msgstr "zoeken"
 
-#: templates/library/results.html:407
+#: templates/library/results.html:405
 msgid "Books"
 msgstr "Boeken"
 
-#: templates/library/results.html:424
+#: templates/library/results.html:422
 msgid "Table with found books"
 msgstr "Tabel met gevonden boeken"
 
-#: templates/library/results.html:428 templates/library/search.html:6
+#: templates/library/results.html:426 templates/library/search.html:6
 msgid "Title"
 msgstr "Titel"
 
-#: templates/library/results.html:429
+#: templates/library/results.html:427
 msgid "Author"
 msgstr "Auteur"
-
-#: templates/library/results.html:432
-msgid "Added on"
-msgstr "Toegevoegd op"
-
-#: templates/library/results.html:433
-msgid "Published on"
-msgstr "Uitgegeven op"
 
 #: templates/library/series_list.html:6
 msgid "List of series"
