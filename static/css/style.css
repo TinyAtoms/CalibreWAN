@@ -102,7 +102,6 @@ figure.w-50 a img {
     position: relative;
     text-align: center;
     margin: 0 auto;
-    width: 50%;
     margin: 2%;
 }
 
@@ -137,9 +136,9 @@ figure.w-50 a img {
 .format-overlay p {
     color: #000;
     font-weight: 400;
-    font-size: 1.5rem;
-    padding: 0 20px 20px;
-    text-decoration: none
+    padding: 1rem 20px 40px;
+    text-decoration: none;
+    
 }
 
 .download {
@@ -171,4 +170,87 @@ figure.w-50 a img {
 
 .book-format-container  a div {
     color: white;
+}
+
+.select2-container--default .select2-selection--multiple {
+    width: 75%;
+}
+
+.select2-container--default .select2-selection--single{
+    width: 75%;
+}
+
+span.select2-container--default span.select2-selection--single span.select2-selection__arrow {
+    right: 25%;
+}
+
+
+/* XL */
+  @media screen and (min-width: 1200px) {
+    .w-xl-50 {
+        width: 50% !important;
+      }
+
+      .w-xl-75 {
+        width: 75% !important;
+      }
+
+  }
+
+  /* lg */
+  @media screen and (min-width: 992px) {
+
+    .w-lg-75 {
+        width: 75% !important;
+      }
+
+      .w-xl-90 {
+        width: 90% !important;
+      }
+
+      .w-xl-100 {
+        width: 100% !important;
+      }
+
+}
+
+/* md */
+
+@media screen and (min-width: 768px) and (max-width: 992px)  {
+    .w-md-75 {
+        width: 75% !important;
+      }
+
+      .w-md-90 {
+        width: 90% !important;
+      }
+
+      .w-md-100 {
+        width: 100% !important;
+      }
+}
+
+/* sm */
+@media screen and (min-width: 576px) {
+
+    .w-sm-75 {
+        width: 75% !important;
+      }
+
+    .w-sm-90 {
+        width: 90% !important;
+      }
+}
+
+/* - */
+@media screen and (max-width: 576px) {
+
+    .w-xs-75 {
+        width: 75% !important;
+      }
+
+    .w-xs-90 {
+        width: 90% !important;
+      }
+
 }

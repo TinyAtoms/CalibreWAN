@@ -23,7 +23,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+<!--feather icons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="bg-grey">
@@ -59,19 +60,12 @@
                 </li>
             </ul>
 
-            <ul class="navbar-nav mr-auto">
-                <form class="form-inline my-2 my-lg-0" action="{% url 'results' %}" method="get">
-                    <input class="form-control mr-sm-2" type="search" id="generic" name="generic"
+            <ul class="navbar-nav mr-auto col-lg-4">
+                <form class="form-inline my-2 my-lg-0 " action="{% url 'results' %}" method="get">
+                    <input class="form-control mr-sm-2  col-lg-5" type="search" id="generic" name="generic"
                         placeholder="Title/Author/ISBN" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i data-feather="search"></i></button>
                 </form>
-
-
-
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/">{% trans 'Advanced search' %}</a>
-                </li>
             </ul>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -88,8 +82,10 @@
     {% block content %} {% endblock %}
 
 
+    <script nonce="{{ request.csp_nonce }}">
+        feather.replace()
+      </script>
 
 
 </body>
-
 </html>

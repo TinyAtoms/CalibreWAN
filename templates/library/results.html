@@ -10,39 +10,38 @@
 <br>
 <br>
 
-    <form action="{% url 'filter' %}" method="post" class="w-75">
-        {% csrf_token %}
-    
-        <div class="row">
-            <div class="col">
+<form action="{% url 'filter' %}" method="post" class="border py-2 w-xl-50 w-lg-75 w-md-75 w-xs-90 w-sm-90 m-auto">
+    {% csrf_token %}
+    <div class="container-fluid">
+
+        <div class="row form-group mx-2 py-1 mt-2 justify-content-start">
+            <div class="col-xl-2 col-lg-4 col-sm-12">
                 <label for="id_authors">{% trans 'Autors' %}</label>
             </div>
-    
-            <div class="col">
+            <div class="col-xl-3 col-lg-4 col-sm-12">
                 <select name="authors" id="id_authors" data-autocomplete-light-language="en"
                     data-autocomplete-light-url="/author-autocomplete/" data-autocomplete-light-function="select2"
                     multiple></select>
             </div>
-    
-            <div class="col">
+            <div class="col-lg-12 col-xl"></div>
+            <div class="col-xl-2 col-lg-4 col-sm-12">
                 <label for="id_authors_andor_0">{% trans 'filtertype' %}</label>
             </div>
-    
-            <div class="col">
+            <div class="col-xl-3 col-lg-4 col-sm-12">
                 <div class="form-check form-check-inline">
                     <label for="id_authors_andor_0"><input type="radio" name="authors_andor" class="form-check-label"
-                            value="0" id="id_authors_andor_0" checked>{% trans 'any/or' %}</label>
-                    <label for="id_authors_andor_1"><input type="radio" name="authors_andor" class="form-check-label"
-                            value="1" id="id_authors_andor_1">{% trans 'all/and' %}</label>
+                            value="0" id="id_authors_andor_0" checked>{% trans 'or' %}</label>
+                    <label for="id_authors_andor_1" class="pl-2"><input type="radio" name="authors_andor" class="form-check-label"
+                            value="1" id="id_authors_andor_1">{% trans 'and' %}</label>
                 </div>
             </div>
         </div>
-    
-        <div class="row">
-            <div class="col">
+
+        <div class="row form-group mx-2 py-1 justify-content-start">
+            <div class="col-xl-2 col-lg-4 col-sm-12">
                 <label for="id_tags">{% trans 'Tags' %}</label>
             </div>
-            <div class="col">
+            <div class="col-xl-3 col-lg-4 col-sm-12">
                 <select name="tags" id="id_tags" data-autocomplete-light-language="en"
                     data-autocomplete-light-url="/tag-autocomplete/" data-autocomplete-light-function="select2"
                     multiple></select>
@@ -51,27 +50,27 @@
                 </div>
                 </li>
             </div>
-    
-            <div class="col">
+            <div class="col-lg-12 col-xl"></div>
+
+            <div class="col-xl-2 col-lg-4 col-sm-12">
                 <label for="id_tags_andor_0">{% trans 'filtertype' %}</label>
             </div>
-    
-            <div class="col">
+
+            <div class="col-xl-3 col-lg-4 col-sm-12">
                 <div class="form-check form-check-inline">
-    
-                    <label for="id_tags_andor_0"><input type="radio" name="tags_andor" class="form-check-label" value="0"
-                            id="id_tags_andor_0" checked>{% trans 'any/or' %}</label>
-                    <label for="id_tags_andor_1"><input type="radio" name="tags_andor" class="form-check-label" value="1"
-                            id="id_tags_andor_1">{% trans 'all/and' %}</label>
+
+                    <label for="id_tags_andor_0"><input type="radio" name="tags_andor" class="form-check-label"
+                            value="0" id="id_tags_andor_0" checked>{% trans 'or' %}</label>
+                    <label for="id_tags_andor_1" class="pl-2"><input type="radio" name="tags_andor" class="form-check-label"
+                            value="1" id="id_tags_andor_1">{% trans 'and' %}</label>
                 </div>
             </div>
         </div>
-    
-        <div class="row">
-            <div class="col">
+        <div class="row form-group mx-2 py-1 justify-content-start">
+            <div class="col-xl-2 col-lg-4 col-sm-12">
                 <label for="id_series">{% trans 'Series' %}</label>
             </div>
-            <div class="col">
+            <div class="col-xl-3 col-lg-4 col-sm-12">
                 <select name="series" id="id_series" data-autocomplete-light-language="en"
                     data-autocomplete-light-url="/series-autocomplete/" data-autocomplete-light-function="select2"
                     multiple></select>
@@ -80,38 +79,38 @@
                         type="text/dal-forward-conf">[{"type": "field", "src": "authors"}, {"type": "field", "src": "tags"}]</script>
                 </div>
             </div>
-    
-            <div class="col">
+            <div class="col-lg-12 col-xl"></div>
+
+            <div class="col-xl-2 col-lg-4 col-sm-12">
                 <label for="id_series_andor_0">{% trans 'filtertype' %}</label>
             </div>
-    
-    
-            <div class="col">
+
+
+            <div class="col-xl-3 col-lg-4 col-sm-12">
                 <div class="form-check form-check-inline">
-    
-                    <label for="id_series_andor_0"><input type="radio" name="series_andor" value="0" id="id_series_andor_0"
-                            checked>{% trans 'any/or' %}</label>
-                    <label for="id_series_andor_1"><input type="radio" name="series_andor" value="1"
-                            id="id_series_andor_1">{% trans 'all/and' %}</label>
+
+                    <label for="id_series_andor_0"><input type="radio" name="series_andor" value="0"
+                            id="id_series_andor_0" checked>{% trans 'or' %}</label>
+                    <label for="id_series_andor_1" class="pl-2"><input type="radio" name="series_andor" value="1"
+                            id="id_series_andor_1">{% trans 'and' %}</label>
                 </div>
             </div>
         </div>
-        </div>
-    
-        <div class="row">
-            <div class="col">
+        <div class="row form-group mx-2 py-1 justify-content-start">
+            <div class="col-xl-2 col-lg-4 col-sm-12">
                 <label for="id_languages">{% trans 'Language' %}:</label>
             </div>
-            <div class="col">
+            <div class="col-xl-3 col-lg-4 col-sm-12">
                 <select name="languages" id="id_languages" data-autocomplete-light-language="en"
                     data-autocomplete-light-url="/lang-autocomplete/" data-autocomplete-light-function="select2">
                     <option value="" selected>{% trans 'Language' %}</option>
                 </select>
             </div>
-            <div class="col">
+            <div class="col-lg-12 col-xl"></div>
+            <div class="col-xl-2 col-lg-4 col-sm-12">
                 <label for="id_ratings__rating__gte">{% trans 'MinRating' %}</label>
             </div>
-            <div class="col">
+            <div class="col-xl-3 col-lg-4 col-sm-12">
                 <select name="ratings__rating__gte" id="id_ratings__rating__gte">
                     <option value="0" selected>0</option>
                     <option value="1">1</option>
@@ -126,34 +125,31 @@
                     <option value="10">10</option>
                 </select>
             </div>
-    
-    
+
+
         </div>
-    
-        <div class="row">
-            <div class="col">
-                <label for="id_pubdate__gte">{% trans 'Published between' %}</label>
+
+        <div class="row form-group mx-2 py-1 justify-content-start">
+            <div class="col-xl-2 col-lg-4 col-sm-12">
+                <label for="id_pubdate__gte" class="w-75">{% trans 'Published between' %}</label>
             </div>
-    
-            <div class="col">
+            <div class="col-xl-3 col-lg-4 col-sm-12">
                 <input type="number" name="pubdate__gte" id="id_pubdate__gte">
             </div>
-    
-            <div class="col">
+            <div class="col-lg-12 col-xl"></div>
+            <div class="col-xl-2 col-lg-4 col-sm-12">
                 <label for="pubdate__lte">{% trans 'and' %} </label>
             </div>
-    
-            <div class="col">
-                <input type="number" name="pubdate__lte" id="id_pubdate__lte">
+            <div class="col-xl-3 col-lg-4 col-sm-12">
+                <input type="number" name="pubdate__lte" id="id_pubdate__lte" class="w-xl-75">
             </div>
         </div>
-    
-        <div class="row">
-            <div class="col">
-                <label for="id_timestamp__gte_month">{% trans 'Added to Calibre after' %} </label>
+
+        <div class="row form-group mx-2 py-1 justify-content-start">
+            <div class="col-xl-2 col-lg-4 col-sm-12">
+                <label for="id_timestamp__gte_month">{% trans 'Added to Calibre between' %} </label>
             </div>
-    
-            <div class="col">
+            <div class="col-xl-4 col-lg-5 col-sm-12">
                 <select name="timestamp__gte_month" id="id_timestamp__gte_month">
                     <option value="" selected>---</option>
                     <option value="1">January</option>
@@ -168,8 +164,7 @@
                     <option value="10">October</option>
                     <option value="11">November</option>
                     <option value="12">December</option>
-                </select>
-                <select name="timestamp__gte_day" id="id_timestamp__gte_day">
+                </select><select name="timestamp__gte_day" id="id_timestamp__gte_day">
                     <option value="" selected>---</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -202,8 +197,7 @@
                     <option value="29">29</option>
                     <option value="30">30</option>
                     <option value="31">31</option>
-                </select>
-                <select name="timestamp__gte_year" id="id_timestamp__gte_year">
+                </select><select name="timestamp__gte_year" id="id_timestamp__gte_year">
                     <option value="" selected>---</option>
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
@@ -259,13 +253,12 @@
                     <option value="1971">1971</option>
                 </select>
             </div>
-    
-            <div class="col">
-                <label for="id_timestamp__lte_month"> {% trans 'and before' %}</label>
-    
+            <div class="col-lg-12 col-xl"></div>
+            <div class="col-xl-1 col-lg-4 col-sm-12">
+                <label for="id_timestamp__lte_month"> {% trans 'and' %}</label>
+
             </div>
-    
-            <div class="col">
+            <div class="col-xl-4 col-lg-5 col-sm-12">
                 <select name="timestamp__lte_month" id="id_timestamp__lte_month">
                     <option value="" selected>---</option>
                     <option value="1">January</option>
@@ -367,39 +360,44 @@
                     <option value="1973">1973</option>
                     <option value="1972">1972</option>
                     <option value="1971">1971</option>
-                </select></li>
-    
-    
+                </select>
             </div>
-    
-    
-        </div>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{% trans 'search' %}</button>
-    </form>
 
-    <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
-    {{ form.media }}
-    
-    <script nonce="{{ request.csp_nonce }}">
-        (function ($) {
-            $('#add-form').click(function () {
-                var index = $('#id_inline_test_models-TOTAL_FORMS').val()
-                var newTable = $('#id_inline_test_models-__prefix__-DELETE').parents('table').clone()
-                newTable.find(':input').each(function () {
-                    for (attr of ['name', 'id'])
-                        $(this).attr(
-                            attr,
-                            $(this).attr(attr).replace('__prefix__', index)
-                        )
-                })
-                newTable.insertBefore($(this))
-                $('#id_inline_test_models-TOTAL_FORMS').val(
-                    parseInt($('#id_inline_test_models-TOTAL_FORMS').val()) + 1
-                )
-                newTable.slideDown()
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{% trans 'search' %}</button>
+</form>
+
+<script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+{{ form.media }}
+
+<script nonce="{{ request.csp_nonce }}">
+    (function ($) {
+        $('#add-form').click(function () {
+            var index = $('#id_inline_test_models-TOTAL_FORMS').val()
+            var newTable = $('#id_inline_test_models-__prefix__-DELETE').parents('table').clone()
+            newTable.find(':input').each(function () {
+                for (attr of ['name', 'id'])
+                    $(this).attr(
+                        attr,
+                        $(this).attr(attr).replace('__prefix__', index)
+                    )
             })
-        })($)
-    </script>
+            newTable.insertBefore($(this))
+            $('#id_inline_test_models-TOTAL_FORMS').val(
+                parseInt($('#id_inline_test_models-TOTAL_FORMS').val()) + 1
+            )
+            newTable.slideDown()
+        })
+    })($)
+</script>
 
 
 
@@ -413,54 +411,54 @@
 
 <script nonce="{{ request.csp_nonce }}">
     $(document).ready(function () {
-        $('#books').DataTable({"searching" : false, "pageLength": 50});
+        $('#books').DataTable({ "searching": false, "pageLength": 50 });
         $('.dataTables_length').addClass('bs-select');
-        });
+    });
 </script>
 
 
 <div class="container-fluid">
-        <table id="books" class="table table-hover table-striped table-responsive-lg table-bordered">
-            <caption class="table-caption">{% trans 'Table with found books' %}</caption>
-            <thead class="thead-dark">
-                <tr>
-                    <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-                    <th scope="col" class="title" >{% trans 'Title' %}</th>
-                    <th scope="col" class="author" >{% trans 'Author' %}</th>
-                    <th scope="col" class="rating" >{% trans 'Rating' %}</th>
-                    <th scope="col" class="tags-col" >{% trans 'Tags' %}</th>
-                    <th scope="col" class="added" >{% trans 'Added on' %}</th>
-                    <th scope="col" class="published">{% trans 'Published on' %}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for book in book_list %}
-                <tr>
-                    <th scope="row"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></th>
-                    <td class="authors" label="{% trans 'Authors' %}">
-                        {% for author in book.authors.all %}
-                        <a href="{{ author.get_absolute_url }}" rel="author">{{ author }}</a>
-                        {% endfor %}
-                    </td>
-                    <td label="{% trans 'Rating' %}">
-                        {% for rating in book.ratings.all %}
-                        <a href="{{ rating.get_absolute_url }}" rel="rating">{{ rating }}</a>
-                        {% endfor %}
-                    </td>
-                    <td class="tags" label="{% trans 'Tags' %}">
-                        {% for tag in book.tags.all %}
-                        <a href="{{ tag.get_absolute_url }}" rel="tag">{{ tag }}</a>
-                        {% endfor %}
-                    </td>
-                    <td label="{% trans 'Added on' %}">{{ book.timestamp | date:"d/m/Y" }}</td>
-                    <td label="{% trans 'Published on' %}">{{ book.pubdate.year }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-    
-    
-        </table>
-    
+    <table id="books" class="table table-hover table-striped table-responsive-md table-bordered">
+        <caption class="table-caption">{% trans 'Table with found books' %}</caption>
+        <thead class="thead-dark">
+            <tr>
+                <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+                <th scope="col" class="title">{% trans 'Title' %}</th>
+                <th scope="col" class="author">{% trans 'Author' %}</th>
+                <th scope="col" class="rating">{% trans 'Rating' %}</th>
+                <th scope="col" class="tags-col">{% trans 'Tags' %}</th>
+                <th scope="col" class="added">{% trans 'Added on' %}</th>
+                <th scope="col" class="published">{% trans 'Published on' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in book_list %}
+            <tr>
+                <th scope="row"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></th>
+                <td class="authors" label="{% trans 'Authors' %}">
+                    {% for author in book.authors.all %}
+                    <a href="{{ author.get_absolute_url }}" rel="author">{{ author }}</a>
+                    {% endfor %}
+                </td>
+                <td label="{% trans 'Rating' %}">
+                    {% for rating in book.ratings.all %}
+                    <a href="{{ rating.get_absolute_url }}" rel="rating">{{ rating }}</a>
+                    {% endfor %}
+                </td>
+                <td class="tags" label="{% trans 'Tags' %}">
+                    {% for tag in book.tags.all %}
+                    <a href="{{ tag.get_absolute_url }}" rel="tag">{{ tag }}</a>
+                    {% endfor %}
+                </td>
+                <td label="{% trans 'Added on' %}">{{ book.timestamp | date:"d/m/Y" }}</td>
+                <td label="{% trans 'Published on' %}">{{ book.pubdate.year }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+
+    </table>
+
 </div>
 
 <br>
