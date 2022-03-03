@@ -3,17 +3,35 @@
 # CalibreWAN
 A self hosted server to host your Calibre library online.
 
-## Features
+# Features
 
 - Advanced filtering (and/or filtering with authors, tags, series, languages)
 - oAuth login
 - cross-platform
+- reading books in your browser
 
 
+# Screenshots
 
-## Screenshots
+## Advanced filtering
+![App Screenshot](https://i.imgur.com/t540Es6.png)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+## View books by author, publisher, rating, etc
+![App Screenshot](https://i.imgur.com/tEBKWVj.png)
+
+## View book information
+![App Screenshot](https://i.imgur.com/rXmLTf7.png)  
+  
+## Read book in your browser (supported formats are PDF and epub)
+![App Screenshot](https://i.imgur.com/b6hoqc4.png) 
+
+## View all authors, publishers, tags, etc
+![App Screenshot](https://i.imgur.com/jsxRH4z.png)  
+  
+## Browse all books
+![App Screenshot](https://i.imgur.com/dFqmekL.png)  
+  
+
 
 
 
@@ -29,8 +47,6 @@ A self hosted server to host your Calibre library online.
 - an android app
 - more languages
 - theming support
-
-
 
 
 
@@ -71,7 +87,7 @@ The admin panel is located at /admin
 ### google
 Go to https://console.developers.google.com/ and create a new project
 After you create a project you will have to create a “Client ID” and fill in some project details for the consent form that will be presented to the client.
-Under “APIs & auth” go to “Credentials” and create a new Client ID. Probably you will want a “Web application” Client ID. Provide your domain name or test domain name in “Authorized JavaScript origins”. Finally fill in http://calibreserver.yourdomain.com/accounts/google/login/callback/ in the “Authorized redirect URI” field. You can fill multiple URLs, one for each test domain. After creating the Client ID you will find all details for the Django configuration on this page.
+Under “APIs & auth” go to “Credentials” and create a new Client ID. Probably you will want a “Web application” Client ID. Provide your domain name or test domain name in “Authorized JavaScript origins”. Finally fill in `http://calibreserver.yourdomain.com/accounts/google/login/callback/` in the “Authorized redirect URI” field. You can fill multiple URLs, one for each test domain. After creating the Client ID you will find all details for the Django configuration on this page.
 Users that login using the app will be presented a consent form. For this to work additional information is required. Under “APIs & auth” go to “Consent screen” and at least provide an email and product name.
 Fill in the form as follows:
 * Provider, “Google”
