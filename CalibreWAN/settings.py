@@ -20,7 +20,6 @@ SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = bool(int(os.environ["DEBUG"]))
 ACCOUNT_ALLOW_SIGNUPS= bool(int(os.environ["ACCOUNT_ALLOW_SIGNUPS"]))
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(",")
-# INTERNAL_IPS = ["10.10.1.13"]
 
 
 ACCOUNT_ADAPTER = 'CalibreWAN.adapter.CustomAccountAdapter'
@@ -223,6 +222,6 @@ CSP_MEDIA_SRC = ("'self'", )
 CSP_FORM_ACTION = ("'self'", "github.com", "accounts.google.com")
 CSP_INCLUDE_NONCE_IN=['script-src']
 
-SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = "Strict"
 # SESSION_COOKIE_SAMESITE = "Strict"

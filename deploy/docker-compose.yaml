@@ -8,6 +8,6 @@ services:
       - "8000:80"
     volumes:
       - "/home/massiveatoms/UserLibrary:/CWA/UserLibrary"
-      - "/home/massiveatoms/CalibreWAN/Persistent:/CWA/Persistent"
+      - "/home/massiveatoms/deploytest/CalibreWAN/Persistent:/CWA/Persistent"
     env_file:
       - ".env"

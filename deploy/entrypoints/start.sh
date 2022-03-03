@@ -1,9 +1,9 @@
 APPDIR="/CWA"
 USER_DIR="/CWA/UserLibrary"
 PERSISTENT="/CWA/Persistent"
-DJANGO_SUPERUSER_PASSWORD="aVeryStrongPassword,this-is-not"
-DJANGO_SUPERUSER_USERNAME="superuser_first_login"
-DJANGO_SUPERUSER_EMAIL="thishasnoeffect@whatsoever.com"
+export DJANGO_SUPERUSER_PASSWORD="aVeryStrongPassword,this-is-not"
+export DJANGO_SUPERUSER_USERNAME="superuser_first_login"
+export DJANGO_SUPERUSER_EMAIL="thishasnoeffect@whatsoever.com"
 
 if [ ! -d "$USER_DIR" ]; then
   echo "Calibre Library not mounted at the correct location."
@@ -20,13 +20,10 @@ if [ ! -d "$PERSISTENT" ]; then
   exit 1
 fi
 
-#cp -R -u -p "/CWA/Persistent/db.sqlite3" "/CWA/Persistent/"
-# ls -l /CWA
-# RUN chmod a+rw /CWA /CWA/*
-chown -R unit:unit /CWA
+python "${APPDIR}/manage.py" migrate sites
 python "${APPDIR}/manage.py" makemigrations
 python "${APPDIR}/manage.py" migrate
-
+chown -R unit:unit /CWA
 
 
 # simple error handling, https://stackoverflow.com/a/25180186/11585371
@@ -51,7 +48,7 @@ function catch()
 
 try
 (  
-  python "${APPDIR}/manage.py" createsuperuser --noinput --username=$DJANGO_SUPERUSER_USERNAME
+  python "${APPDIR}/manage.py" createsuperuser --noinput 
 )
 catch || {
   echo "superuser already exists"

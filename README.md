@@ -44,10 +44,10 @@ A self hosted server to host your Calibre library online.
 
 1. clone this repository
 2. copy `./deploy/.env.example` to `./deploy/.env`
-3. run `head /dev/urandom |  LC_ALL=C tr -dc 'A-Za-z0-9!@#$%^&*(-_=+)' | head -c 50 && echo` to generate a secret key, and set the SECRET_KEY value in the environment file to this. You could also use [this website](https://djecrety.ir/) to generate your secret key.
+3. run `head /dev/urandom |  LC_ALL=C tr -dc 'A-Za-z0-9!@#%^&*(-_=+)' | head -c 50 && echo` to generate a secret key, and set the SECRET_KEY value in the environment file to this. You could also use [this website](https://djecrety.ir/) to generate your secret key.
 4. Set the IP and/or url where CalibreWAN will be accessible from, seperated by commas if you will have multiple. For example: `ALLOWED_HOSTS="10.10.1.16,cwan.mydomain.com"`
 5. Change the  volume mounts in the docker-compose file to reflect your environment. `"/path/to/your/calibre/library:/CWA/UserLibrary"` and `"/path/to/somewhere/to/store/persistent/data/for/CWA:/CWA/Persistent"`
-6. set the port you want to expose CalibreWAN at. The default is port 8000
+6. Specify the port you want to explose CalibreWAN at in the docker-compose file. The default is port 8000
 7. Build the container with docker compose and host it
 7. (optional) configure your reverse proxy
 
@@ -57,15 +57,15 @@ The admin panel is located at /admin
 2. Change your password. Do this by clicking on "Change" on the Users line. Change the password.
 
 ## Configuring oAuth
-1. click on change in the sites group. Then click on the only entry visible, change the values to your subdomain/ip and save.
-2. create a social application with the OAuth providers you want. Currently, github, google and microsoft are supported. 
-3. Fill in the values:
+1. create a social application with the OAuth providers you want. Currently, github, google and microsoft are supported. 
+2. Fill in the values:
 ### github
 1. go to [this url](https://github.com/settings/applications/new)
 2. Set the homepage to what you're going to host it as, for example "https://calibreserver.yourdomain.com/"  
 3. Set the callback to `https://calibreserver.yourdomain.com/accounts/github/login/callback/`
 4. Copy the client ID and generated client secret from github to the form
-5. Select the site and click the right arrow. The site should be in the chosen site box if chosen correctly.
+5. Key is not needed, leave it blank.
+5. Select the site and click the right arrow. The site should be in the chosen site box (right side) if chosen correctly.
 5. save
 
 ### google
@@ -79,13 +79,9 @@ Fill in the form as follows:
 * Client id, is called “Client ID” by Google
 * Secret key, is called “Client secret” by Google
 * Key, is not needed, leave blank.
-
-
 You can now log in to the application with oAuth. 
 
 ### Close user registration
 By default, the registration of new users is open. To close it, change `ACCOUNT_ALLOW_SIGNUPS` in the env file. The setting applies to both local account and oAuth account registration.
 
 ### Make sure you changed the password of the default user
-
-

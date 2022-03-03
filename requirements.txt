@@ -1,5 +1,4 @@
 wheel 
-django-environ>=0.8.1 # seperating secrets
 Django==3.2.12 # the man himself
 django-allauth>=0.48 # oAuth
 django-autocomplete-light>=3.9.1 # autocomplete
@@ -8,7 +7,7 @@ django-ninja>=0.17.0
 python-gettext>=4.0 # localisation
 
 # development
-django-debug-toolbar>=3.2
+# django-debug-toolbar>=3.2
 # django-extensions>=3.1
 # inotify
 # django-silk>=4.0
