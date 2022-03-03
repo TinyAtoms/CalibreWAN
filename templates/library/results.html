@@ -10,24 +10,24 @@
 <br>
 <br>
 
-<form action="{% url 'filter' %}" method="post" class="border py-2 w-xl-50 w-lg-75 w-md-75 w-xs-90 w-sm-90 m-auto">
+<form action="{% url 'filter' %}" method="post" class="border py-2 w-xl-50 w-lg-75 w-md-60 w-xs-90 w-sm-90 m-auto">
     {% csrf_token %}
     <div class="container-fluid">
 
-        <div class="row form-group mx-2 py-1 mt-2 justify-content-start">
-            <div class="col-xl-2 col-lg-4 col-sm-12">
+        <div class="row form-group mx-2 py-1 mt-2 justify-content-around">
+            <div class="col-xl-2 col-lg-4 col-sm-7">
                 <label for="id_authors">{% trans 'Autors' %}</label>
             </div>
-            <div class="col-xl-3 col-lg-4 col-sm-12">
+            <div class="col-xl-3 col-lg-4 col-sm-7">
                 <select name="authors" id="id_authors" data-autocomplete-light-language="en"
                     data-autocomplete-light-url="/author-autocomplete/" data-autocomplete-light-function="select2"
                     multiple></select>
             </div>
             <div class="col-lg-12 col-xl"></div>
-            <div class="col-xl-2 col-lg-4 col-sm-12">
+            <div class="col-xl-2 col-lg-4 col-sm-7">
                 <label for="id_authors_andor_0">{% trans 'filtertype' %}</label>
             </div>
-            <div class="col-xl-3 col-lg-4 col-sm-12">
+            <div class="col-xl-3 col-lg-4 col-sm-7">
                 <div class="form-check form-check-inline">
                     <label for="id_authors_andor_0"><input type="radio" name="authors_andor" class="form-check-label"
                             value="0" id="id_authors_andor_0" checked>{% trans 'or' %}</label>
@@ -36,12 +36,11 @@
                 </div>
             </div>
         </div>
-
-        <div class="row form-group mx-2 py-1 justify-content-start">
-            <div class="col-xl-2 col-lg-4 col-sm-12">
+        <div class="row form-group mx-2 py-1 justify-content-around">
+            <div class="col-xl-2 col-lg-4 col-sm-7">
                 <label for="id_tags">{% trans 'Tags' %}</label>
             </div>
-            <div class="col-xl-3 col-lg-4 col-sm-12">
+            <div class="col-xl-3 col-lg-4 col-sm-7">
                 <select name="tags" id="id_tags" data-autocomplete-light-language="en"
                     data-autocomplete-light-url="/tag-autocomplete/" data-autocomplete-light-function="select2"
                     multiple></select>
@@ -52,11 +51,11 @@
             </div>
             <div class="col-lg-12 col-xl"></div>
 
-            <div class="col-xl-2 col-lg-4 col-sm-12">
+            <div class="col-xl-2 col-lg-4 col-sm-7">
                 <label for="id_tags_andor_0">{% trans 'filtertype' %}</label>
             </div>
 
-            <div class="col-xl-3 col-lg-4 col-sm-12">
+            <div class="col-xl-3 col-lg-4 col-sm-7">
                 <div class="form-check form-check-inline">
 
                     <label for="id_tags_andor_0"><input type="radio" name="tags_andor" class="form-check-label"
@@ -66,11 +65,11 @@
                 </div>
             </div>
         </div>
-        <div class="row form-group mx-2 py-1 justify-content-start">
-            <div class="col-xl-2 col-lg-4 col-sm-12">
+        <div class="row form-group mx-2 py-1 justify-content-around">
+            <div class="col-xl-2 col-lg-4 col-sm-7">
                 <label for="id_series">{% trans 'Series' %}</label>
             </div>
-            <div class="col-xl-3 col-lg-4 col-sm-12">
+            <div class="col-xl-3 col-lg-4 col-sm-7">
                 <select name="series" id="id_series" data-autocomplete-light-language="en"
                     data-autocomplete-light-url="/series-autocomplete/" data-autocomplete-light-function="select2"
                     multiple></select>
@@ -81,12 +80,12 @@
             </div>
             <div class="col-lg-12 col-xl"></div>
 
-            <div class="col-xl-2 col-lg-4 col-sm-12">
+            <div class="col-xl-2 col-lg-4 col-sm-7">
                 <label for="id_series_andor_0">{% trans 'filtertype' %}</label>
             </div>
 
 
-            <div class="col-xl-3 col-lg-4 col-sm-12">
+            <div class="col-xl-3 col-lg-4 col-sm-7">
                 <div class="form-check form-check-inline">
 
                     <label for="id_series_andor_0"><input type="radio" name="series_andor" value="0"
@@ -96,21 +95,21 @@
                 </div>
             </div>
         </div>
-        <div class="row form-group mx-2 py-1 justify-content-start">
-            <div class="col-xl-2 col-lg-4 col-sm-12">
+        <div class="row form-group mx-2 py-1 justify-content-around">
+            <div class="col-xl-2 col-lg-4 col-sm-7">
                 <label for="id_languages">{% trans 'Language' %}:</label>
             </div>
-            <div class="col-xl-3 col-lg-4 col-sm-12">
+            <div class="col-xl-3 col-lg-4 col-sm-7">
                 <select name="languages" id="id_languages" data-autocomplete-light-language="en"
                     data-autocomplete-light-url="/lang-autocomplete/" data-autocomplete-light-function="select2">
                     <option value="" selected>{% trans 'Language' %}</option>
                 </select>
             </div>
             <div class="col-lg-12 col-xl"></div>
-            <div class="col-xl-2 col-lg-4 col-sm-12">
+            <div class="col-xl-2 col-lg-4 col-sm-7">
                 <label for="id_ratings__rating__gte">{% trans 'MinRating' %}</label>
             </div>
-            <div class="col-xl-3 col-lg-4 col-sm-12">
+            <div class="col-xl-3 col-lg-4 col-sm-7">
                 <select name="ratings__rating__gte" id="id_ratings__rating__gte">
                     <option value="0" selected>0</option>
                     <option value="1">1</option>
@@ -128,28 +127,26 @@
 
 
         </div>
-
-        <div class="row form-group mx-2 py-1 justify-content-start">
-            <div class="col-xl-2 col-lg-4 col-sm-12">
+        <div class="row form-group mx-2 py-1 justify-content-around">
+            <div class="col-xl-2 col-lg-4 col-sm-7">
                 <label for="id_pubdate__gte" class="w-75">{% trans 'Published between' %}</label>
             </div>
-            <div class="col-xl-3 col-lg-4 col-sm-12">
+            <div class="col-xl-3 col-lg-4 col-sm-7">
                 <input type="number" name="pubdate__gte" id="id_pubdate__gte">
             </div>
             <div class="col-lg-12 col-xl"></div>
-            <div class="col-xl-2 col-lg-4 col-sm-12">
+            <div class="col-xl-2 col-lg-4 col-sm-7">
                 <label for="pubdate__lte">{% trans 'and' %} </label>
             </div>
-            <div class="col-xl-3 col-lg-4 col-sm-12">
+            <div class="col-xl-3 col-lg-4 col-sm-7">
                 <input type="number" name="pubdate__lte" id="id_pubdate__lte" class="w-xl-75">
             </div>
         </div>
-
-        <div class="row form-group mx-2 py-1 justify-content-start">
-            <div class="col-xl-2 col-lg-4 col-sm-12">
+        <div class="row form-group mx-2 py-1 justify-content-around">
+            <div class="col-xl-2 col-lg-4 col-sm-7">
                 <label for="id_timestamp__gte_month">{% trans 'Added to Calibre between' %} </label>
             </div>
-            <div class="col-xl-4 col-lg-5 col-sm-12">
+            <div class="col-xl-4 col-lg-4 col-sm-7">
                 <select name="timestamp__gte_month" id="id_timestamp__gte_month">
                     <option value="" selected>---</option>
                     <option value="1">January</option>
@@ -254,11 +251,11 @@
                 </select>
             </div>
             <div class="col-lg-12 col-xl"></div>
-            <div class="col-xl-1 col-lg-4 col-sm-12">
+            <div class="col-xl-1 col-lg-4 col-sm-7">
                 <label for="id_timestamp__lte_month"> {% trans 'and' %}</label>
 
             </div>
-            <div class="col-xl-4 col-lg-5 col-sm-12">
+            <div class="col-xl-4 col-lg-4 col-sm-7">
                 <select name="timestamp__lte_month" id="id_timestamp__lte_month">
                     <option value="" selected>---</option>
                     <option value="1">January</option>
@@ -365,6 +362,11 @@
 
 
         </div>
+        <div class="row form-group mx-2 py-1 mt-2 justify-content-start">
+            <div class="col-xl-12 col-lg-12 col-md-4 col-sm-4 col-xs-4 d-inline-flex justify-content-around">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{% trans 'search' %}</button>
+            </div>
+        </div>
 
 
     </div>
@@ -372,7 +374,7 @@
 
 
 
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{% trans 'search' %}</button>
+    
 </form>
 
 <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
