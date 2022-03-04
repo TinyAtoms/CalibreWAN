@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.microsoft',
+    # 'allauth.socialaccount.providers.microsoft',
     "library",
     'api.apps.ApiConfig',
 ]
