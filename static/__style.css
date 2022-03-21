@@ -138,3 +138,7 @@ p.count {
 .book-format-container  a div {
   color: white;
 }
+
+#bookFormat {
+  size: 0.5vw;
+}
