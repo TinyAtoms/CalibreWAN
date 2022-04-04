@@ -87,7 +87,7 @@
             <a href="{{download.reverser.get_absolute_url}}" target="_blank" rel="noopener noreferrer"> <div class="read"> <i data-feather="book-open"></i> </div></a>
             <a href="/UserLibrary/{{ download.url }}" target="_blank" rel="noopener noreferrer"> <div class="download"> <i data-feather="download"></i></div></a>
             <div class="format-overlay">
-                <p>{{download.format}}</p>
+                <p id="bookFormat">{{download.format}}</p>
             </div>
             <img src="{% static 'media/format-overlay.png' %}"
                 class="alt-triangle" alt="Overlay to give better contrast to the format specifier">
