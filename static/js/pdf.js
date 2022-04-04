@@ -39,6 +39,7 @@ function renderPage(num) {
     // Wait for rendering to finish
     renderTask.promise.then(function() {
       pageRendering = false;
+      hideSpinner();
       if (pageNumPending !== null) {
         // New page rendering is pending
         renderPage(pageNumPending);
@@ -49,6 +50,14 @@ function renderPage(num) {
 
   // Update page counters
   document.getElementById('page_num').textContent = num;
+}
+
+/**
+ * After renderPage() rendered the PDF it will hide the spinner (loading animation)
+ */
+function hideSpinner() {
+  document.getElementById('spinner')
+          .style.display = 'none';
 }
 
 /**
