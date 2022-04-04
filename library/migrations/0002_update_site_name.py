@@ -10,7 +10,7 @@ def setup_default_site(apps, schema_editor):
     Site = apps.get_model("sites", "Site")
 
     name = "CalibreWAN"
-    domain = "CalibreWAN.yourdomain.com"
+    domain = "CalibreWAN"
 
     try:
         site = Site.objects.get(domain="example.com")

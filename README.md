@@ -60,8 +60,9 @@ The admin panel is located at http://yourdomain.or.ip.addr:port/admin
 
 
 ## Configuring OAuth
-1. create a social application with the OAuth providers you want. Currently, github and google are supported.
-2. Generate the needed secrets for whichever provider you want to use.
+1. create a social application with the OAuth providers you want. Currently, github and google are supported. You do this by clicking on the plus/add sign in the "Social Applications" row. You will be redirected to a form to add a social application.
+2. Select the provider
+3. Generate the needed secrets for whichever provider you want to use.
 ### github
 1. go to [this url](https://github.com/settings/applications/new)
 2. Set the homepage to what you're going to host it as, for example "https://calibreserver.yourdomain.com/"  
