@@ -4,7 +4,9 @@
 {% load account socialaccount %}
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 {% block content %}
-<h1>{% trans "Sign In" %}</h1>
+<div class="container">
+    <h1 class="text-center">{% trans "Sign In" %}</h1>
+</div>
 {% include "socialaccount/snippets/login_extra.html" %}
 
 <div class="wrapper fadeInDown">
@@ -14,40 +16,46 @@
         <form class="login" method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
             <div class="container-fluid">
-                <div class="row form-group mx-2 py-1 mt-2 justify-content-start">
-                    <div class="col-25">
-                        <label for="id_login">{% trans 'Username' %}</label>
+                <div class="row form-group mx-2 py-1 mt-2 justify-content-center">
+                    <div class="col-25 d-flex align-items-center">
+                        <div class="container">
+                            <label for="id_login">{% trans 'Username' %}</label>
+                        </div>
                     </div>
                     <div class="col-75">
                         <input type="text" id="id_login" name="login" placeholder="{% trans 'Username' %}"
                             autocomplete="username" maxlength="150" required="">
                     </div>
                 </div>
-                <div class="row form-group mx-2 py-1 justify-content-start">
-                    <div class="col-25">
-                        <label for="id_password">{% trans 'Password' %}</label>
+                <div class="row form-group mx-2 py-1 justify-content-center">
+                    <div class="col-25 d-flex align-items-center">
+                        <div class="container">
+                            <label for="id_password">{% trans 'Password' %}</label>
+                        </div>
                     </div>
                     <div class="col-75">
                         <input type="password" id="id_password" name="password" placeholder="{% trans 'Password' %}"
                             autocomplete="current-password" required="">
                     </div>
                 </div>
-                <div class="row form-group mx-2 py-1 justify-content-start">
-                    <div class="col-25">
-                        <label for="id_remember">{% trans 'Remember me' %}</label>
+                <div class="row form-group mx-2 py-1 justify-content-center">
+                    <div class="col-50 d-flex align-items-center">
+                        <div class="container">
+                            <label for="id_remember">{% trans 'Remember me' %}</label>
+                        </div>
                     </div>
-                    <div class="col-75">
+                    <div class="col-50">
                         <input type="checkbox" name="remember" id="id_remember">
                     </div>
                 </div>
-                <div class="row form-group mx-2 py-1 mt-2 justify-content-start" id="submit-row">
+                <div class="row form-group mx-2 py-1 mt-2 justify-content-center" id="submit-row">
                     {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
                     <div class="col-xl-12 col-lg-12 col-md-4 col-sm-4 col-xs-4 d-inline-flex justify-content-around">
                         <button class="btn btn-outline-success " type="submit">{% trans "Sign In" %}</button>
                     </div>
-                    
+
                 </div>
 
             </div>
