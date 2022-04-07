@@ -7,7 +7,7 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - "/home/massiveatoms/UserLibrary:/CWA/UserLibrary"
+      - "/e/Documents/CalibreLibrary:/CWA/UserLibrary"
       - "/home/massiveatoms/deploytest/CalibreWAN/Persistent:/CWA/Persistent"
     env_file:
       - ".env"
