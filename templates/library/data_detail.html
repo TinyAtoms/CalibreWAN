@@ -178,4 +178,53 @@
 <p>Sorry, {{format}} can't be viewed online yet. Please <a href="/UserLibrary/{{ url }}">download the file instead</a> for offline viewing</p>
 {% endif %}
 
+
+
+{% comment %} 
+<!--- 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+^ you can use getCookie('csrftoken') to get the csrf token for the put, or you can use {{csrf_token}} if you're writing the script inline
+
+{% load account %} 
+^ to get the username
+<script nonce="{{ request.csp_nonce }}">
+
+  
+    function send_put(data){ // this sends progress of the user
+        var xhr = new XMLHttpRequest();
+        xhr.open("PUT", "http://localhost:8000/apiv1/bookprogress/", false);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader("X-CSRFToken", data["csrfmiddlewaretoken"]);
+        xhr.send(JSON.stringify(data));
+        console.log(xhr.responseText);
+        // PUT data
+    }
+    function better_put(data){ // same as above, but nondeprecated js?
+        fetch('http://localhost:8000/apiv1/bookprogress/', {     
+            method: 'PUT',
+            credentials: 'include',     
+            headers: {'X-CSRFToken': data["csrfmiddlewaretoken"]},     
+            body: JSON.stringify(data)})    
+            .then(response => response.json())   
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+    }
+
+    function send_get(data){ // get progress info
+    var xhr = new XMLHttpRequest();
+    var url = "http://localhost:8000/apiv1/bookprogress/" + data["book"] + "/" + data["user"];
+    xhr.open("GET", url, false);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(null);
+    console.log(xhr.responseText);
+
+    send_put({"book": 1, "user": "{% user_display user %}", "progress": 5, "csrfmiddlewaretoken": "{{ csrf_token }}"});
+    better_put({"book": 1, "user": "{% user_display user %}", "progress": 5, "csrfmiddlewaretoken": "{{ csrf_token }}"});
+    send_get({"book": 1, "user": "{% user_display user %}", "progress": 5});
+
+</script> 
+
+--->
+{% endcomment %}
+
 {% endblock %}

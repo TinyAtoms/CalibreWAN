@@ -1,8 +1,9 @@
 from ninja import NinjaAPI
 from datetime import datetime
 from library import models
+from .models import  BookProgress
 from ninja.security import django_auth
-
+from ninja import Schema
 
 def serialize_author_qs(qs):
     authors = list(qs.values("id", "name"))
@@ -231,6 +232,54 @@ def book(request, book_id: int):
         "cover" : f"/UserLibrary/{book.path}/cover.jpg",
         "formats" : formats
     }
-
-
     return response
+
+
+def get_bookprogress(book: int, user: str ):
+    try:
+        progress = BookProgress.objects.get(user=user, book=book)
+        return progress.progress
+    except BookProgress.DoesNotExist:
+        return 0
+
+
+@api.get("/bookprogress/{book}/{user}", auth=django_auth)
+def bookprogress_GET(request, book: int, user: str):
+    progress = get_bookprogress(book, user)
+    response = {
+        "book" : book,
+        "user" : user,
+        "progress" : progress 
+    }
+    return response
+
+
+def create_or_update_bp(book: int, user: str, progress:str):
+    try:
+        bp = BookProgress.objects.get(user=user, book=book)
+        bp.progress = progress
+        bp.save()
+    except BookProgress.DoesNotExist:
+        bp = BookProgress.objects.create(book=book, user=user, progress=progress)
+    return {
+        "book" : bp.book,
+        "user" : bp.user,
+        "progress" : bp.progress 
+    }
+ 
+
+class BP(Schema):
+    book: int
+    user: str
+    progress: str
+
+
+# This needs to be PUT, and not doing so is a security risk
+@api.put("/bookprogress/", auth=django_auth)
+def bookprogress_PUT(request, item: BP):
+    return create_or_update_bp(item.book, item.user, item.progress)
+
+# # This needs to be PUT, and not doing so is a security risk
+# @api.get("/bookprogress/{book}/{user}/{progress}", auth=django_auth)
+# def bookprogress_cancer_GET(request, book: int, user: str, progress: str):
+#     return create_or_update_bp(book, user, progress)

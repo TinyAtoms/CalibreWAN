@@ -20,8 +20,8 @@ if [ ! -d "$PERSISTENT" ]; then
   exit 1
 fi
 
-python "${APPDIR}/manage.py" migrate sites
 python "${APPDIR}/manage.py" makemigrations
+python "${APPDIR}/manage.py" migrate sites
 python "${APPDIR}/manage.py" migrate
 chown -R unit:unit /CWA
 

@@ -36,15 +36,17 @@ class DjangoRouter:
 
 class CalibreRouter:
     """
-    A router to control all database operations on models in the
-    auth and contenttypes applications.
+    A router to control all database operations on models in the library
     """
     route_app_labels = {"library"}
+    # special_models = {"bookprogress"}
+    # ^ models that use library models but shouldn't be saved in calibre's db
 
     def db_for_read(self, model, **hints):
         """
         Attempts to read auth and contenttypes models go to default.
         """
+        # if model._meta.app_label in self.route_app_labels and model._meta.db_table not in self.special_models :
         if model._meta.app_label in self.route_app_labels:
             return 'calibre'
         return None
