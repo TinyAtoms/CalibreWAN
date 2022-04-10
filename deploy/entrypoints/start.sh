@@ -4,7 +4,6 @@ PERSISTENT="/CWA/Persistent"
 export DJANGO_SUPERUSER_PASSWORD="aVeryStrongPassword,this-is-not"
 export DJANGO_SUPERUSER_USERNAME="superuser_first_login"
 export DJANGO_SUPERUSER_EMAIL="thishasnoeffect@whatsoever.com"
-
 if [ ! -d "$USER_DIR" ]; then
   echo "Calibre Library not mounted at the correct location."
   echo "Mount it at /CWA/UserLibrary/"
@@ -23,7 +22,10 @@ fi
 python "${APPDIR}/manage.py" makemigrations
 python "${APPDIR}/manage.py" migrate sites
 python "${APPDIR}/manage.py" migrate
-chown -R unit:unit /CWA
+
+usermod -u $DUID CWA
+groupmod -g $DGID CWA
+chown -R CWA:CWA /CWA
 
 
 # simple error handling, https://stackoverflow.com/a/25180186/11585371
