@@ -1,13 +1,14 @@
 version: "3.9"
 services:
   web:
+    image: "calibrewan:1.0"
     build:
       context: ../
       dockerfile: ./deploy/Dockerfile
     ports:
       - "8000:80"
     volumes:
-      - "/run/media/massiveatoms/Media/Documents/CalibreLibrary:/CWA/UserLibrary"
+      - "/run/media/massiveatoms/Media1/Documents/CalibreLibrary:/CWA/UserLibrary"
       - "/home/massiveatoms/Desktop/CalibreWAN2/Persistent:/CWA/Persistent"
     env_file:
       - ".env"

@@ -1,6 +1,6 @@
 wheel 
-Django==3.2.12 # the man himself
-django-allauth>=0.48 # oAuth
+Django==3.2.13 # the man himself
+django-allauth>=0.50 # oAuth
 django-autocomplete-light>=3.9.1 # autocomplete
 django-csp==3.7
 django-ninja>=0.17.0
