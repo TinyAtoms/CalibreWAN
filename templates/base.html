@@ -3,28 +3,33 @@
 {% load l10n %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% block title %}<title>Local Library</title>{% endblock %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<!-- Google Fonts -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!--feather icons -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!--feather icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+        integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="bg-grey">
@@ -40,37 +45,47 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href={% url 'authors' %}>{% trans 'Authors' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href={% url 'publishers' %}>{% trans 'Publishers' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href={% url 'ratings' %}>{% trans 'Ratings' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href={% url 'series' %}>{% trans 'Series' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href={% url 'tags' %}>{% trans 'Tags' %}</a>
-                    </li>
-                </ul>
-                <form class="d-flex input-group w-auto align-items-center" action="{% url 'results' %}" method="get">
-                    <input class="form-control" type="search" id="generic" name="generic"
-                            placeholder="Title/Author/ISBN" aria-label="Search">
-                    <button class="btn btn-outline-success btn-sm" type="submit"><i data-feather="search"></i></button>
-                </form>
-                <div class="navbar-collapse">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{% user_display user %}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link w-100" href="/accounts/logout">{% trans 'Sign Out' %}</a>
-                        </li>
-                    </ul>
+                <div class="container">
+                    <div class="">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href={% url 'authors' %}>{% trans 'Authors' %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href={% url 'publishers' %}>{% trans 'Publishers' %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href={% url 'ratings' %}>{% trans 'Ratings' %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href={% url 'series' %}>{% trans 'Series' %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href={% url 'tags' %}>{% trans 'Tags' %}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="">
+                        <form class="d-flex input-group w-auto align-items-center" action="{% url 'results' %}"
+                            method="get">
+                            <input class="form-control" type="search" id="generic" name="generic"
+                                placeholder="Title/Author/ISBN" aria-label="Search">
+                            <button class="btn btn-outline-success btn-sm" type="submit"><i
+                                    data-feather="search"></i></button>
+                        </form>
+                    </div>
+                    <div class="">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">{% user_display user %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <div class="container">
+                                    <a class="nav-link" href="/accounts/logout">{% trans 'Sign Out' %}</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,8 +96,9 @@
 
     <script nonce="{{ request.csp_nonce }}">
         feather.replace()
-      </script>
+    </script>
 
 
 </body>
+
 </html>
