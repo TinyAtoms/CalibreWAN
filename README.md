@@ -53,7 +53,7 @@ A self hosted server to host your Calibre library online.
 
 # First login
 The admin panel is located at http://yourdomain.or.ip.addr:port/admin
-1. login to the admin panel with the default user created. The username is `superuser_first_login` and the password is `aVeryStrongPassword,this-is-not`
+1. login to the admin panel with the default user created. The username is `DefaultUsername` and the password is `Default-Password1`
 2. Change your password. Do this by clicking on "Change" on the Users line, then selecting the user, and clicking on the link to change the password.
 ![](https://i.imgur.com/Otc7cTJ.png)
 ![](https://i.imgur.com/o3lMtE6.png)

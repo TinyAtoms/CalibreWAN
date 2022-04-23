@@ -1,9 +1,6 @@
-
 ## pull official base image
-# FROM nginx/unit:1.26.1-python3.9
 FROM nginx/unit:1.22.0-python3.9
 EXPOSE 80
-
 
 ## set work directory
 WORKDIR /CWA
@@ -21,7 +18,9 @@ COPY ./api ./api
 COPY ./locale ./locale
 
 # perms
-RUN chmod a+rw /CWA /CWA/*
-RUN chown -R unit:unit /CWA
+# change UID here
+RUN useradd -r -u 1000 -g unit CWA
+RUN groupadd -g 1000 CWA
+RUN chown -R CWA:CWA /CWA
 COPY ./deploy/entrypoints/* /docker-entrypoint.d/
 RUN chmod +x /docker-entrypoint.d/start.sh

@@ -50,7 +50,8 @@
         "max": 25,
         "spare": 1,
         "idle_timeout": 20
-      }
+      },
+      "user": "CWA"
     }
   }
 }
