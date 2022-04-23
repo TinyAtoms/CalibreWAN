@@ -1,5 +1,5 @@
 ## pull official base image
-FROM nginx/unit:1.26.1-python3.10
+FROM nginx/unit:1.22.0-python3.9
 EXPOSE 80
 
 ## set work directory
